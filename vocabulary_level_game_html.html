@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A2 to C2 Vocabulary Quest</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #58cc02, #1cb0f6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      color: #1f2937;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 900px;
+      background: #ffffff;
+      border-radius: 28px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
+      padding: 28px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      font-size: 28px;
+      color: #58a700;
+    }
+
+    .subtitle {
+      color: #6b7280;
+      margin-top: 6px;
+      font-size: 15px;
+    }
+
+    .stats {
+      text-align: right;
+      font-weight: bold;
+      line-height: 1.7;
+    }
+
+    .level-map {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin: 24px 0;
+    }
+
+    .level {
+      border: 3px solid #e5e7eb;
+      border-radius: 18px;
+      padding: 14px 8px;
+      text-align: center;
+      font-weight: bold;
+      background: #f9fafb;
+      color: #9ca3af;
+      transition: 0.2s;
+    }
+
+    .level.active {
+      border-color: #58cc02;
+      background: #eaffdc;
+      color: #256600;
+      transform: translateY(-3px);
+    }
+
+    .level.done {
+      border-color: #1cb0f6;
+      background: #e0f2fe;
+      color: #0369a1;
+    }
+
+    .card {
+      border: 3px solid #e5e7eb;
+      border-radius: 24px;
+      padding: 28px;
+      background: #ffffff;
+    }
+
+    .stage-label {
+      display: inline-block;
+      background: #58cc02;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-weight: bold;
+      margin-bottom: 18px;
+    }
+
+    .question {
+      font-size: 26px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .instruction {
+      color: #6b7280;
+      margin-bottom: 22px;
+    }
+
+    .answers {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 16px;
+      transition: 0.15s;
+    }
+
+    .answer-btn {
+      padding: 18px;
+      font-size: 17px;
+      background: #f3f4f6;
+      border: 3px solid #e5e7eb;
+      color: #1f2937;
+    }
+
+    .answer-btn:hover:not(:disabled) {
+      background: #eef6ff;
+      border-color: #1cb0f6;
+      transform: translateY(-2px);
+    }
+
+    .answer-btn.correct {
+      background: #dcfce7;
+      border-color: #22c55e;
+      color: #166534;
+    }
+
+    .answer-btn.wrong {
+      background: #fee2e2;
+      border-color: #ef4444;
+      color: #991b1b;
+    }
+
+    .feedback {
+      min-height: 56px;
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 18px;
+      font-weight: bold;
+      display: none;
+    }
+
+    .feedback.show {
+      display: block;
+    }
+
+    .feedback.good {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .feedback.bad {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .main-btn {
+      background: #58cc02;
+      color: white;
+      padding: 15px 26px;
+      font-size: 16px;
+      box-shadow: 0 5px 0 #3f9700;
+    }
+
+    .main-btn:active {
+      transform: translateY(4px);
+      box-shadow: 0 1px 0 #3f9700;
+    }
+
+    .main-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .secondary-btn {
+      background: #f3f4f6;
+      color: #374151;
+      padding: 14px 22px;
+      border: 2px solid #e5e7eb;
+    }
+
+    .progress-wrap {
+      height: 16px;
+      background: #e5e7eb;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 18px 0 24px;
+    }
+
+    .progress {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #58cc02, #1cb0f6);
+      transition: width 0.3s;
+    }
+
+    .finish-screen {
+      text-align: center;
+      display: none;
+      padding: 30px;
+    }
+
+    .finish-screen h2 {
+      font-size: 34px;
+      color: #58a700;
+      margin-bottom: 14px;
+    }
+
+    .finish-screen p {
+      color: #4b5563;
+      margin-bottom: 22px;
+      font-size: 18px;
+    }
+
+    @media (max-width: 700px) {
+      .app {
+        padding: 20px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .stats {
+        text-align: left;
+      }
+
+      .level-map {
+        grid-template-columns: 1fr;
+      }
+
+      .answers {
+        grid-template-columns: 1fr;
+      }
+
+      .controls {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .main-btn,
+      .secondary-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header>
+      <div>
+        <h1>Vocabulary Quest</h1>
+        <p class="subtitle">Answer correctly to climb from A2 to C2.</p>
+      </div>
+      <div class="stats">
+        <div>Score: <span id="score">0</span></div>
+        <div>Hearts: <span id="hearts">3</span></div>
+      </div>
+    </header>
+
+    <section class="level-map" id="levelMap"></section>
+
+    <div class="progress-wrap">
+      <div class="progress" id="progressBar"></div>
+    </div>
+
+    <section class="card" id="gameCard">
+      <span class="stage-label" id="stageLabel">A2</span>
+      <div class="question" id="questionText"></div>
+      <p class="instruction" id="instructionText">Choose the correct meaning.</p>
+      <div class="answers" id="answers"></div>
+      <div class="feedback" id="feedback"></div>
+      <div class="controls">
+        <button class="secondary-btn" onclick="restartGame()">Restart</button>
+        <button class="main-btn" id="nextBtn" onclick="nextQuestion()" disabled>Continue</button>
+      </div>
+    </section>
+
+    <section class="finish-screen" id="finishScreen">
+      <h2>Excellent work!</h2>
+      <p>You completed all five vocabulary stages: A2, B1, B2, C1 and C2.</p>
+      <button class="main-btn" onclick="restartGame()">Play Again</button>
+    </section>
+  </main>
+
+  <script>
+    const stages = [
+      {
+        name: "A2",
+        pass: 3,
+        questions: [
+          {
+            word: "journey",
+            prompt: "What does 'journey' mean?",
+            answer: "a trip from one place to another",
+            options: ["a trip from one place to another", "a type of food", "a loud noise", "a short sleep"]
+          },
+          {
+            word: "borrow",
+            prompt: "What does 'borrow' mean?",
+            answer: "to take something and give it back later",
+            options: ["to take something and give it back later", "to break something", "to buy something expensive", "to clean a room"]
+          },
+          {
+            word: "quiet",
+            prompt: "Choose the opposite of 'quiet'.",
+            answer: "noisy",
+            options: ["noisy", "soft", "empty", "early"]
+          },
+          {
+            word: "improve",
+            prompt: "What does 'improve' mean?",
+            answer: "to become better",
+            options: ["to become better", "to become colder", "to disappear", "to wait outside"]
+          }
+        ]
+      },
+      {
+        name: "B1",
+        pass: 3,
+        questions: [
+          {
+            word: "decision",
+            prompt: "What is a 'decision'?",
+            answer: "a choice you make after thinking",
+            options: ["a choice you make after thinking", "a place for swimming", "a kind of weather", "a broken machine"]
+          },
+          {
+            word: "avoid",
+            prompt: "What does 'avoid' mean?",
+            answer: "to stay away from something",
+            options: ["to stay away from something", "to explain clearly", "to arrive early", "to make something louder"]
+          },
+          {
+            word: "support",
+            prompt: "Which sentence uses 'support' correctly?",
+            answer: "My friends support me when I am nervous.",
+            options: ["My friends support me when I am nervous.", "I support my tea with sugar.", "The train supports at six o'clock.", "She supports the book yesterday."]
+          },
+          {
+            word: "although",
+            prompt: "What does 'although' show?",
+            answer: "contrast",
+            options: ["contrast", "price", "location", "possession"]
+          }
+        ]
+      },
+      {
+        name: "B2",
+        pass: 3,
+        questions: [
+          {
+            word: "reliable",
+            prompt: "What does 'reliable' mean?",
+            answer: "able to be trusted",
+            options: ["able to be trusted", "very expensive", "full of danger", "difficult to read"]
+          },
+          {
+            word: "significant",
+            prompt: "Choose the closest meaning of 'significant'.",
+            answer: "important",
+            options: ["important", "tiny", "ordinary", "temporary"]
+          },
+          {
+            word: "consequence",
+            prompt: "What is a 'consequence'?",
+            answer: "a result of an action",
+            options: ["a result of an action", "a person who travels", "a kind of promise", "a secret plan"]
+          },
+          {
+            word: "nevertheless",
+            prompt: "Which word is closest to 'nevertheless'?",
+            answer: "however",
+            options: ["however", "because", "therefore", "unless"]
+          }
+        ]
+      },
+      {
+        name: "C1",
+        pass: 3,
+        questions: [
+          {
+            word: "ambiguous",
+            prompt: "What does 'ambiguous' mean?",
+            answer: "having more than one possible meaning",
+            options: ["having more than one possible meaning", "completely honest", "very easy to repair", "related to ancient history"]
+          },
+          {
+            word: "subtle",
+            prompt: "Choose the closest meaning of 'subtle'.",
+            answer: "not obvious or direct",
+            options: ["not obvious or direct", "extremely loud", "legally required", "easy to measure"]
+          },
+          {
+            word: "undermine",
+            prompt: "What does 'undermine' mean?",
+            answer: "to weaken gradually",
+            options: ["to weaken gradually", "to decorate beautifully", "to repair quickly", "to explain publicly"]
+          },
+          {
+            word: "plausible",
+            prompt: "What does 'plausible' mean?",
+            answer: "seeming reasonable or likely",
+            options: ["seeming reasonable or likely", "clearly impossible", "angry and impatient", "made by hand"]
+          }
+        ]
+      },
+      {
+        name: "C2",
+        pass: 3,
+        questions: [
+          {
+            word: "meticulous",
+            prompt: "What does 'meticulous' mean?",
+            answer: "showing great attention to detail",
+            options: ["showing great attention to detail", "careless and rushed", "emotionally distant", "easy to predict"]
+          },
+          {
+            word: "conundrum",
+            prompt: "What is a 'conundrum'?",
+            answer: "a difficult problem or puzzle",
+            options: ["a difficult problem or puzzle", "a short celebration", "a formal apology", "a sudden movement"]
+          },
+          {
+            word: "ubiquitous",
+            prompt: "Choose the closest meaning of 'ubiquitous'.",
+            answer: "found everywhere",
+            options: ["found everywhere", "rare and valuable", "morally wrong", "recently invented"]
+          },
+          {
+            word: "scrutinize",
+            prompt: "What does 'scrutinize' mean?",
+            answer: "to examine very carefully",
+            options: ["to examine very carefully", "to ignore completely", "to celebrate loudly", "to shorten a text"]
+          }
+        ]
+      }
+    ];
+
+    let currentStage = 0;
+    let currentQuestion = 0;
+    let correctInStage = 0;
+    let score = 0;
+    let hearts = 3;
+    let answered = false;
+
+    const levelMap = document.getElementById("levelMap");
+    const stageLabel = document.getElementById("stageLabel");
+    const questionText = document.getElementById("questionText");
+    const instructionText = document.getElementById("instructionText");
+    const answersBox = document.getElementById("answers");
+    const feedback = document.getElementById("feedback");
+    const nextBtn = document.getElementById("nextBtn");
+    const scoreBox = document.getElementById("score");
+    const heartsBox = document.getElementById("hearts");
+    const progressBar = document.getElementById("progressBar");
+    const gameCard = document.getElementById("gameCard");
+    const finishScreen = document.getElementById("finishScreen");
+
+    function shuffle(array) {
+      return [...array].sort(() => Math.random() - 0.5);
+    }
+
+    function renderMap() {
+      levelMap.innerHTML = "";
+      stages.forEach((stage, index) => {
+        const div = document.createElement("div");
+        div.className = "level";
+        if (index < currentStage) div.classList.add("done");
+        if (index === currentStage) div.classList.add("active");
+        div.innerHTML = `${stage.name}<br><small>${index < currentStage ? "Completed" : index === currentStage ? "Current" : "Locked"}</small>`;
+        levelMap.appendChild(div);
+      });
+    }
+
+    function renderQuestion() {
+      answered = false;
+      nextBtn.disabled = true;
+      feedback.className = "feedback";
+      feedback.textContent = "";
+
+      const stage = stages[currentStage];
+      const question = stage.questions[currentQuestion];
+      const progress = ((correctInStage / stage.pass) * 100).toFixed(0);
+
+      stageLabel.textContent = `${stage.name} Stage`;
+      questionText.textContent = question.prompt;
+      instructionText.textContent = `Word: ${question.word}. Get ${stage.pass} correct answers to unlock the next level.`;
+      progressBar.style.width = `${progress}%`;
+
+      answersBox.innerHTML = "";
+      shuffle(question.options).forEach(option => {
+        const button = document.createElement("button");
+        button.className = "answer-btn";
+        button.textContent = option;
+        button.onclick = () => checkAnswer(button, option, question.answer);
+        answersBox.appendChild(button);
+      });
+
+      renderMap();
+      updateStats();
+    }
+
+    function checkAnswer(button, selected, correct) {
+      if (answered) return;
+      answered = true;
+
+      const buttons = document.querySelectorAll(".answer-btn");
+      buttons.forEach(btn => {
+        btn.disabled = true;
+        if (btn.textContent === correct) btn.classList.add("correct");
+      });
+
+      if (selected === correct) {
+        button.classList.add("correct");
+        correctInStage++;
+        score += 10 + currentStage * 5;
+        feedback.textContent = "Correct! You are closer to the next level.";
+        feedback.className = "feedback show good";
+      } else {
+        button.classList.add("wrong");
+        hearts--;
+        feedback.textContent = `Not quite. The correct answer is: ${correct}`;
+        feedback.className = "feedback show bad";
+      }
+
+      updateStats();
+      progressBar.style.width = `${((correctInStage / stages[currentStage].pass) * 100).toFixed(0)}%`;
+      nextBtn.disabled = false;
+
+      if (hearts === 0) {
+        feedback.textContent = "No hearts left. Press Restart to try again.";
+        nextBtn.disabled = true;
+      }
+    }
+
+    function nextQuestion() {
+      const stage = stages[currentStage];
+
+      if (correctInStage >= stage.pass) {
+        currentStage++;
+        correctInStage = 0;
+        currentQuestion = 0;
+
+        if (currentStage >= stages.length) {
+          finishGame();
+          return;
+        }
+      } else {
+        currentQuestion++;
+        if (currentQuestion >= stage.questions.length) {
+          currentQuestion = 0;
+        }
+      }
+
+      renderQuestion();
+    }
+
+    function updateStats() {
+      scoreBox.textContent = score;
+      heartsBox.textContent = hearts;
+    }
+
+    function finishGame() {
+      gameCard.style.display = "none";
+      finishScreen.style.display = "block";
+      progressBar.style.width = "100%";
+      renderMap();
+    }
+
+    function restartGame() {
+      currentStage = 0;
+      currentQuestion = 0;
+      correctInStage = 0;
+      score = 0;
+      hearts = 3;
+      answered = false;
+      gameCard.style.display = "block";
+      finishScreen.style.display = "none";
+      renderQuestion();
+    }
+
+    renderQuestion();
+  </script>
+</body>
+</html>
