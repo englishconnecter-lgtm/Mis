@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<!-- saved from url=(0091)https://englishconnecter-lgtm.github.io/Mis/esl_connect_english_cefr_entry_test_styled.html -->
+<html lang="en" data-theme="light"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ESL CONNECT - English CEFR Entry Test</title>
+  <meta name="description" content="40-question English entry test with increasing difficulty and CEFR level result.">
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+  <link href="./ESL CONNECT - English CEFR Entry Test_files/css2" rel="stylesheet">
+  <style>
+    :root,[data-theme="light"]{
+      --text-sm:clamp(.875rem,.8rem + .35vw,1rem);
+      --text-base:clamp(1rem,.95rem + .25vw,1.125rem);
+      --text-lg:clamp(1.125rem,1rem + .75vw,1.5rem);
+      --text-xl:clamp(1.5rem,1.2rem + 1.25vw,2.25rem);
+      --text-2xl:clamp(2rem,1.2rem + 2.5vw,3.2rem);
+      --space-2:.5rem; --space-3:.75rem; --space-4:1rem; --space-6:1.5rem; --space-8:2rem; --space-12:3rem;
+      --radius-md:.5rem; --radius-lg:.75rem; --radius-xl:1rem;
+      --bg:#f7f6f2; --surface:#f9f8f5; --surface-2:#ffffff; --border:#d4d1ca; --text:#28251d; --muted:#6d6a63;
+      --primary:#01696f; --primary-hover:#0c4e54; --primary-soft:#cedcd8; --success:#437a22; --warning:#d19900; --error:#a12c7b;
+      --shadow:0 10px 28px rgba(40,37,29,.08);
+      --font-body:'Source Sans 3', Arial, sans-serif; --font-display:'Libre Baskerville', Georgia, serif;
+    }
+    [data-theme="dark"]{
+      --bg:#171614; --surface:#1c1b19; --surface-2:#201f1d; --border:#393836; --text:#e2dfd8; --muted:#b1aea8;
+      --primary:#4f98a3; --primary-hover:#67afb8; --primary-soft:#313b3b; --success:#86be60; --warning:#e8af34; --error:#df7cb6;
+      --shadow:0 10px 28px rgba(0,0,0,.26);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:var(--font-body);font-size:var(--text-base);line-height:1.6;background:linear-gradient(180deg,var(--bg),var(--surface));color:var(--text)}
+    a,button,input{font:inherit}
+    .skip-link{position:absolute;left:1rem;top:-4rem;background:var(--primary);color:#fff;padding:.8rem 1rem;border-radius:var(--radius-md);z-index:1000}
+    .skip-link:focus{top:1rem}
+    .page{width:min(980px,calc(100% - 1.5rem));margin:0 auto;padding:1rem 0 4rem}
+    .topbar{display:flex;justify-content:flex-start;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem}
+    .brand{display:flex;align-items:center;gap:.75rem;font-weight:700}
+    .brand svg{width:36px;height:36px;color:var(--primary)}
+    
+    .hero,.section-card,.result-box,.overview{background:color-mix(in srgb,var(--surface-2) 90%,transparent);border:1px solid var(--border);border-radius:var(--radius-xl);box-shadow:var(--shadow)}
+    .hero{padding:clamp(1.5rem,4vw,3rem);margin-bottom:1.5rem}
+    .eyebrow{display:inline-block;padding:.35rem .75rem;border-radius:999px;background:var(--primary-soft);color:var(--primary);font-size:var(--text-sm);font-weight:700;margin-bottom:.75rem}
+    h1,h2,h3{font-family:var(--font-display);line-height:1.15;margin:0 0 1rem}
+    h1{font-size:var(--text-2xl)} h2{font-size:var(--text-xl)} h3{font-size:var(--text-lg)}
+    p{margin:.25rem 0 0}
+    .meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-top:1.25rem}
+    .meta div,.band{padding:1rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg)}
+    .bands{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem}
+    .overview{padding:1.25rem;margin-bottom:1.5rem}
+    form{display:grid;gap:1rem}
+    .section-card{padding:1.25rem}
+    .section-label{display:inline-block;margin-bottom:.5rem;color:var(--primary);font-size:var(--text-sm);font-weight:700}
+    fieldset{border:0;padding:0;margin:0}
+    legend{font-size:var(--text-lg);font-weight:700;margin-bottom:.75rem}
+    .options{display:grid;gap:.75rem}
+    .option{display:flex;gap:.75rem;align-items:flex-start;padding:.95rem 1rem;border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--surface);cursor:pointer}
+    .option input{margin-top:.25rem;accent-color:var(--primary);transform:scale(1.1)}
+    .actions{display:flex;gap:1rem;flex-wrap:wrap;margin-top:.5rem}
+    button{min-width:44px;min-height:44px;border:0;border-radius:var(--radius-lg);padding:.9rem 1.2rem;font-weight:700;cursor:pointer}
+    .btn-primary{background:var(--primary);color:#fff}.btn-primary:hover,.btn-primary:focus-visible{background:var(--primary-hover)}
+    .btn-secondary{background:var(--surface-2);border:1px solid var(--border);color:var(--text)}
+    .result-box{display:none;margin-top:1.5rem;padding:1.5rem}.result-box.show{display:block}
+    .score{font-size:var(--text-xl);font-weight:700;color:var(--primary);margin:.35rem 0 .75rem}
+    .level-badge{display:inline-block;padding:.4rem .8rem;border-radius:999px;background:var(--primary-soft);color:var(--primary);font-weight:700;margin-bottom:.75rem}
+    .summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin:1rem 0}
+    .summary-grid div{padding:1rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg)}
+    .feedback-list{padding-left:1.2rem;color:var(--muted)}
+    .correct{border-color:color-mix(in srgb,var(--success) 55%,var(--border))}
+    .incorrect{border-color:color-mix(in srgb,var(--error) 55%,var(--border))}
+    .footer-note{margin-top:1.5rem;color:var(--muted);font-size:var(--text-sm)}
+    :focus-visible{outline:3px solid color-mix(in srgb,var(--primary) 60%,white);outline-offset:3px}
+
+    .login-gate{display:none;margin-top:1.5rem;padding:1.5rem;background:color-mix(in srgb,var(--surface-2) 90%,transparent);border:1px solid var(--border);border-radius:var(--radius-xl);box-shadow:var(--shadow)}
+    .login-gate.show{display:block}
+    .login-gate h2{margin-top:0;color:var(--primary)}
+    .login-actions{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin-top:1rem}
+    .login-link{display:inline-flex;align-items:center;justify-content:center;min-height:44px;border-radius:var(--radius-lg);padding:.9rem 1.2rem;font-weight:700;background:var(--primary);color:#fff;text-decoration:none}
+    .login-link:hover,.login-link:focus-visible{background:var(--primary-hover)}
+    .login-note{color:var(--muted);font-size:var(--text-sm);margin:.75rem 0 0}
+
+    .email-login-form{display:grid;gap:.75rem;margin-top:1rem;max-width:560px}
+    .email-login-form label{font-weight:700;color:var(--text)}
+    .email-login-form input[type="email"]{width:100%;min-height:48px;border:1px solid var(--border);border-radius:var(--radius-lg);padding:.85rem 1rem;background:var(--surface);color:var(--text)}
+    .send-status{margin-top:.75rem;font-size:var(--text-sm);font-weight:700;color:var(--muted)}
+    .send-status.ok{color:var(--success)}
+    .send-status.bad{color:var(--error)}
+    .hidden-submit-frame{display:none;width:0;height:0;border:0}
+
+    form.completed-result-mode .section-card,
+    form.completed-result-mode .actions{display:none}
+
+    @media (max-width:640px){.page{width:min(100% - .75rem,980px)}.hero,.overview,.section-card,.result-box,.login-gate{padding:1rem}}
+  
+/* ESL CONNECT banner */
+:root{
+  --eslc-navy:#06142A;
+  --eslc-yellow:#FFF9C4;
+  --eslc-teal:#3c6e71;
+}
+.eslc-banner{
+  background:var(--eslc-navy);
+  color:#fff;
+  padding:28px 22px;
+  border-radius:0 0 22px 22px;
+  box-shadow:0 10px 24px rgba(0,0,0,.18);
+  margin:0 0 24px;
+}
+.eslc-banner-inner{
+  max-width:1120px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+.eslc-logo-link{
+  width:96px;
+  height:96px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  border-radius:18px;
+  background:#fff;
+  border:3px solid var(--eslc-yellow);
+  box-shadow:0 10px 24px rgba(0,0,0,.22);
+  text-decoration:none;
+  flex:0 0 auto;
+}
+.eslc-logo-link img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.eslc-logo-fallback{
+  color:var(--eslc-navy);
+  font-weight:800;
+  font-size:13px;
+  text-align:center;
+  line-height:1.05;
+  padding:8px;
+  font-family:Arial,Helvetica,sans-serif;
+}
+.eslc-banner h1{
+  margin:0 0 6px;
+  color:#fff;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:clamp(1.8rem,4vw,3rem);
+  line-height:1.05;
+}
+.eslc-banner p{
+  margin:0;
+  color:rgba(255,255,255,.82);
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:1rem;
+}
+@media(max-width:720px){
+  .eslc-banner-inner{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+  .eslc-logo-link{
+    width:88px;
+    height:88px;
+  }
+}
+
+
+/* ESL CONNECT refreshed styling */
+:root,[data-theme="light"]{
+  --eslc-blue:#0b2f5b;
+  --eslc-blue2:#123f73;
+  --eslc-yellow:#fff9c4;
+  --eslc-gold:#f4d35e;
+  --eslc-bg:#f4f7fb;
+  --eslc-card:#ffffff;
+  --eslc-line:#d9e2ef;
+  --eslc-ink:#1f2937;
+}
+body{
+  margin:0!important;
+  background:var(--eslc-bg)!important;
+  color:var(--eslc-ink)!important;
+  font-family:Arial,Helvetica,sans-serif!important;
+}
+.eslc-header{
+  background:linear-gradient(135deg,var(--eslc-blue),var(--eslc-blue2));
+  color:#fff;
+  padding:20px 22px 24px;
+  border-bottom:6px solid var(--eslc-gold);
+}
+.eslc-header-inner{
+  max-width:1120px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:94px 1fr;
+  gap:18px;
+  align-items:center;
+}
+.eslc-logo{
+  width:88px;
+  height:88px;
+  background:#fff;
+  border:3px solid var(--eslc-yellow);
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:var(--eslc-blue);
+  font-weight:800;
+  font-size:14px;
+  line-height:1.05;
+  text-decoration:none;
+  box-shadow:0 4px 16px rgba(0,0,0,.18);
+}
+.eslc-header h1{
+  margin:0;
+  color:#fff;
+  font-size:32px;
+  line-height:1.15;
+  letter-spacing:0;
+}
+.eslc-subtitle{
+  margin:6px 0 0;
+  color:#e8eef8;
+  font-size:16px;
+}
+.eslc-level{
+  display:inline-block;
+  background:var(--eslc-yellow);
+  color:var(--eslc-blue);
+  font-weight:700;
+  border-radius:999px;
+  padding:4px 12px;
+  margin-top:10px;
+}
+.page{
+  max-width:1120px!important;
+  margin:22px auto!important;
+  padding:0 16px!important;
+}
+.topbar{
+  background:#fff!important;
+  border:1px solid var(--eslc-line)!important;
+  border-radius:16px!important;
+  box-shadow:0 8px 24px rgba(11,47,91,.08)!important;
+  margin-bottom:18px!important;
+}
+.brand{
+  color:var(--eslc-blue)!important;
+  font-weight:800!important;
+}
+button,
+.button,
+.btn,
+input[type="button"],
+input[type="submit"]{
+  border-radius:10px!important;
+}
+button,
+.button,
+.btn,
+input[type="button"],
+input[type="submit"]{
+  background:var(--eslc-blue)!important;
+  color:#fff!important;
+  border:1px solid var(--eslc-blue)!important;
+}
+button:hover,
+.button:hover,
+.btn:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover{
+  background:var(--eslc-gold)!important;
+  color:var(--eslc-blue)!important;
+  border-color:var(--eslc-gold)!important;
+}
+.hero,
+.card,
+.question-card,
+.result-card,
+section{
+  border-radius:18px!important;
+}
+.hero,
+.question-card,
+.result-card{
+  background:#fff!important;
+  border:1px solid var(--eslc-line)!important;
+  box-shadow:0 8px 24px rgba(11,47,91,.08)!important;
+}
+.eyebrow,
+.badge,
+.pill{
+  background:var(--eslc-yellow)!important;
+  color:var(--eslc-blue)!important;
+}
+h1,h2,h3,.question-title{
+  color:var(--eslc-blue)!important;
+}
+.eslc-header h1{color:#fff!important;}
+.option,
+.answer,
+.choice,
+label[class*="option"]{
+  border-radius:12px!important;
+}
+.footer-note{
+  background:#fff!important;
+  border:1px solid var(--eslc-line)!important;
+  border-radius:14px!important;
+  padding:14px 16px!important;
+}
+.eslc-footer{
+  margin:26px auto 0;
+  padding:18px 20px;
+  text-align:center;
+  background:var(--eslc-blue);
+  color:#fff;
+  border-top:5px solid var(--eslc-gold);
+  font-family:Arial,Helvetica,sans-serif;
+}
+.eslc-footer a{
+  color:var(--eslc-gold);
+  font-weight:700;
+  text-decoration:none;
+}
+.eslc-footer a:hover{text-decoration:underline;}
+@media(max-width:800px){
+  .eslc-header-inner{grid-template-columns:1fr;}
+  .eslc-header h1{font-size:26px;}
+}
+</style>
+</head>
+<body data-new-gr-c-s-check-loaded="14.1311.0" data-gr-ext-installed="">
+<header class="eslc-header">
+  <div class="eslc-header-inner">
+    <a class="eslc-logo" href="https://www.eslconnect.net/" target="_blank" rel="noopener" aria-label="Visit ESL CONNECT website">ESL<br>CONNECT</a>
+    <div>
+      <h1>English CEFR Entry Test</h1>
+      <p class="eslc-subtitle">A styled ESL CONNECT placement test from A1 to C2.</p>
+      <span class="eslc-level">A1–C2 Placement · 40 Questions · Email Login Required Result</span>
+    </div>
+  </div>
+</header>
+
+
+  <a class="skip-link" href="https://englishconnecter-lgtm.github.io/Mis/esl_connect_english_cefr_entry_test_styled.html#main-content">Skip to test</a>
+  <div class="page">
+    <header class="topbar">
+      <div class="brand" aria-label="English CEFR Entry Test brand"><span>English CEFR Entry Test</span></div>
+</header>
+
+    <main id="main-content">
+      <section class="hero" aria-labelledby="page-title">
+        <span class="eyebrow">Placement test</span>
+        <h1 id="page-title">40-question English level entry test</h1>
+        <p>This multiple-choice test starts with easier items and becomes more difficult as you move forward. At the end, the page estimates a CEFR level from A1 to C2 based on total score and performance across the increasing difficulty bands.</p>
+        <div class="meta">
+          <div><strong>Format:</strong><br>40 multiple-choice questions</div>
+          <div><strong>Progression:</strong><br>A1-A2, then B1-B2, then C1-C2</div>
+          <div><strong>Result:</strong><br>Email login required; result sent to ESL Connect</div>
+        </div>
+      </section>
+
+      <section class="overview" aria-labelledby="band-title">
+        <h2 id="band-title">Difficulty bands</h2>
+        <div class="bands">
+          <div class="band"><strong>Questions 1-10</strong><br>Basic language use, everyday grammar, common vocabulary.</div>
+          <div class="band"><strong>Questions 11-20</strong><br>Elementary to lower-intermediate grammar and reading.</div>
+          <div class="band"><strong>Questions 21-30</strong><br>Independent user tasks, more precise structure and meaning.</div>
+          <div class="band"><strong>Questions 31-40</strong><br>Advanced control, nuance, and formal language use.</div>
+        </div>
+      </section>
+
+      <form id="quiz-form"></form>
+
+      <section id="login-gate" class="login-gate" aria-live="polite" aria-atomic="true">
+        <h2>Log in with your email to see your results</h2>
+        <p>Your answers have been submitted. Enter your email to view your CEFR level, score, band breakdown and study focus.</p>
+        <form id="email-login-form" class="email-login-form">
+          <label for="student-email">Student email</label>
+          <input id="student-email" name="student_email" type="email" autocomplete="email" required placeholder="student@example.com">
+          <button class="btn-primary" type="submit">Log in and see results</button>
+        </form>
+        <p class="login-note">Your result will be shown on this page and sent automatically to englishconnecter@gmail.com.</p>
+        <p class="send-status" id="send-status"></p>
+      </section>
+      <iframe class="hidden-submit-frame" name="result-submit-frame" title="Hidden result submission"></iframe>
+
+      <section id="result" class="result-box" aria-live="polite" aria-atomic="true">
+        <span class="level-badge" id="level-badge">A1</span>
+        <h2>Your estimated CEFR level</h2>
+        <p class="score" id="score-text">0 / 40 correct</p>
+        <p id="level-text">You can manage very basic everyday English, but you still need support with core grammar and common structures.</p>
+        <div class="summary-grid">
+          <div><strong>Band 1</strong><br><span id="band1">0 / 10</span></div>
+          <div><strong>Band 2</strong><br><span id="band2">0 / 10</span></div>
+          <div><strong>Band 3</strong><br><span id="band3">0 / 10</span></div>
+          <div><strong>Band 4</strong><br><span id="band4">0 / 10</span></div>
+        </div>
+        <h3>Study focus</h3>
+        <ul class="feedback-list" id="feedback-list"></ul>
+        <div class="actions"><button class="btn-secondary" type="button" id="new-test-btn">Take the test again</button></div>
+      </section>
+
+      <p class="footer-note">The CEFR scale runs from A1 for beginners to C2 for highly proficient users. This page gives an estimate for placement purposes, not an official certification result.</p>
+    </main>
+  </div>
+
+  <footer class="eslc-footer">ESL Connect - <a href="mailto:englishconnecter@gmail.com">Contact Us</a></footer>
+
+  <script>
+    const questions = [
+      {q:'1. Choose the correct sentence.',o:['I am from Italy.','I from Italy.','I be from Italy.'],a:0,f:'Review the verb "to be" in the present simple.'},
+      {q:'2. Complete the sentence: My brother ___ 12 years old.',o:['have','is','are'],a:1,f:'Practise basic present simple forms of "to be".'},
+      {q:'3. Choose the correct word: We have lunch ___ 1 o\'clock.',o:['in','on','at'],a:2,f:'Revise time prepositions such as at, on, and in.'},
+      {q:'4. Which sentence is correct?',o:['She doesn\'t like coffee.','She don\'t like coffee.','She not like coffee.'],a:0,f:'Review negatives in the present simple.'},
+      {q:'5. Complete the question: ___ you live near here?',o:['Do','Are','Have'],a:0,f:'Practise present simple questions with do/does.'},
+      {q:'6. Choose the best answer: There ___ a book on the table.',o:['are','is','be'],a:1,f:'Review there is / there are.'},
+      {q:'7. Complete the sentence: I usually go to work ___ bus.',o:['by','with','on'],a:0,f:'Revise common transport expressions.'},
+      {q:'8. Choose the correct option: We ___ TV now.',o:['watch','are watching','watched'],a:1,f:'Practise present continuous for actions happening now.'},
+      {q:'9. Which word is opposite to “cheap”?',o:['Expensive','Friendly','Small'],a:0,f:'Build common adjective vocabulary.'},
+      {q:'10. Complete the sentence: Yesterday we ___ to the park.',o:['go','went','gone'],a:1,f:'Revise irregular past simple forms.'},
+
+      {q:'11. Choose the correct option: I\'ve got ___ apples in the bag.',o:['some','any','much'],a:0,f:'Review countable nouns with some and any.'},
+      {q:'12. Complete the sentence: She is ___ than her sister.',o:['tall','taller','more tall'],a:1,f:'Practise comparative adjectives.'},
+      {q:'13. Choose the best answer: We ___ dinner when Tom called.',o:['had','were having','have had'],a:1,f:'Review past continuous for interrupted actions.'},
+      {q:'14. Complete the sentence: I can\'t go out because I ___ my homework yet.',o:['didn\'t finish','haven\'t finished','don\'t finish'],a:1,f:'Revise present perfect with unfinished time.'},
+      {q:'15. Choose the correct word: This book belongs ___ Sara.',o:['for','at','to'],a:2,f:'Practise verb-preposition combinations.'},
+      {q:'16. Which sentence is correct?',o:['If it rains, we\'ll stay home.','If it will rain, we stay home.','If it rains, we stayed home.'],a:0,f:'Review the first conditional structure.'},
+      {q:'17. Complete the sentence: I\'m interested ___ photography.',o:['on','in','at'],a:1,f:'Revise adjective + preposition patterns.'},
+      {q:'18. Choose the best option: You ___ smoke here. It\'s forbidden.',o:['mustn\'t','don\'t have to','shouldn\'t'],a:0,f:'Practise modal verbs of prohibition.'},
+      {q:'19. Read the meaning and choose the word: “A place where you borrow books.”',o:['Library','Bakery','Garage'],a:0,f:'Extend everyday topic vocabulary.'},
+      {q:'20. Complete the sentence: How long ___ you lived here?',o:['did','have','are'],a:1,f:'Review present perfect with how long.'},
+
+      {q:'21. Choose the best option: I wish I ___ more free time these days.',o:['have','had','would have'],a:1,f:'Review wish + past simple for present situations.'},
+      {q:'22. Complete the sentence: By the time we arrived, the film ___.',o:['already started','had already started','has already started'],a:1,f:'Practise past perfect for earlier past events.'},
+      {q:'23. Choose the correct sentence.',o:['She suggested to go earlier.','She suggested going earlier.','She suggested go earlier.'],a:1,f:'Review verb patterns after suggest.'},
+      {q:'24. Complete the sentence: He works for a company ___ makes medical equipment.',o:['who','which','where'],a:1,f:'Revise relative clauses with which and who.'},
+      {q:'25. Choose the best answer: The meeting was cancelled, ___ annoyed everyone.',o:['that','which','what'],a:1,f:'Practise non-defining relative clauses.'},
+      {q:'26. Complete the sentence: If I ___ enough money, I\'d buy a bigger flat.',o:['have','had','would have'],a:1,f:'Review the second conditional.'},
+      {q:'27. Choose the best option: She\'s very good ___ explaining difficult ideas clearly.',o:['at','for','to'],a:0,f:'Revise adjective and preposition combinations.'},
+      {q:'28. Complete the sentence: The new system allows users ___ documents more quickly.',o:['uploading','to upload','upload'],a:1,f:'Practise verb patterns with allow + object + infinitive.'},
+      {q:'29. Choose the word closest in meaning to “reliable”.',o:['Trustworthy','Exciting','Ordinary'],a:0,f:'Build higher-frequency B2 vocabulary.'},
+      {q:'30. Complete the sentence: Not only ___ late, but he also forgot the documents.',o:['he arrived','did he arrive','arrived he'],a:1,f:'Review inversion after negative expressions.'},
+
+      {q:'31. Choose the best option: Hardly ___ the presentation when the fire alarm went off.',o:['we had started','had we started','we started'],a:1,f:'Practise inversion with hardly and scarcely.'},
+      {q:'32. Complete the sentence: Had she known about the delay, she ___ earlier.',o:['would leave','would have left','left'],a:1,f:'Review the third conditional.'},
+      {q:'33. Choose the most natural option: His explanation was so ___ that nobody could follow it.',o:['convoluted','basic','sincere'],a:0,f:'Expand advanced vocabulary for precision and nuance.'},
+      {q:'34. Complete the sentence: The proposal was rejected, largely ___ it failed to address the cost issue.',o:['whereas','inasmuch as','because'],a:2,f:'Revise formal connectors and argument structure.'},
+      {q:'35. Choose the best answer: She came across as confident, ___ she was extremely nervous.',o:['despite','although','whereas'],a:1,f:'Practise contrast linkers in complex sentences.'},
+      {q:'36. Complete the sentence: No sooner ___ the contract than the client asked for changes.',o:['we had signed','had we signed','we signed'],a:1,f:'Review advanced inversion with no sooner.'},
+      {q:'37. Choose the correct option: The report is said ___ by an external consultant.',o:['to prepare','to have been prepared','preparing'],a:1,f:'Practise reporting structures in the passive.'},
+      {q:'38. Complete the sentence: Were the company ___ more transparent, investors might trust it more.',o:['be','to be','being'],a:1,f:'Review formal conditional patterns.'},
+      {q:'39. Choose the best meaning of “to downplay a problem”.',o:['To exaggerate it','To make it seem less serious','To solve it completely'],a:1,f:'Build idiomatic and academic vocabulary.'},
+      {q:'40. Complete the sentence: Rarely ___ such a well-argued and carefully evidenced article.',o:['I have read','have I read','I had read'],a:1,f:'Practise inversion with negative adverbs.'}
+    ];
+
+    const form = document.getElementById('quiz-form');
+    questions.forEach((item, index) => {
+      const section = document.createElement('section');
+      section.className = 'section-card';
+      const band = index < 10 ? 'Band 1 · A1-A2' : index < 20 ? 'Band 2 · A2-B1' : index < 30 ? 'Band 3 · B1-B2' : 'Band 4 · C1-C2';
+      section.innerHTML = `
+        <span class="section-label">${band}</span>
+        <fieldset>
+          <legend>${item.q}</legend>
+          <div class="options">
+            ${item.o.map((opt, i) => `<label class="option"><input type="radio" name="q${index}" value="${i}"> ${opt}</label>`).join('')}
+          </div>
+        </fieldset>
+      `;
+      form.appendChild(section);
+    });
+
+    const actions = document.createElement('div');
+    actions.className = 'actions';
+    actions.innerHTML = '<button class="btn-primary" type="submit">Submit and log in to see results</button><button class="btn-secondary" type="reset" id="reset-btn">Reset answers</button>';
+    form.appendChild(actions);
+    document.documentElement.setAttribute('data-theme', 'light');
+
+    const resultBox = document.getElementById('result');
+    const loginGate = document.getElementById('login-gate');
+    const emailLoginForm = document.getElementById('email-login-form');
+    const studentEmailInput = document.getElementById('student-email');
+    const sendStatus = document.getElementById('send-status');
+    const scoreText = document.getElementById('score-text');
+    const levelText = document.getElementById('level-text');
+    const levelBadge = document.getElementById('level-badge');
+    const feedbackList = document.getElementById('feedback-list');
+    const bandEls = [document.getElementById('band1'), document.getElementById('band2'), document.getElementById('band3'), document.getElementById('band4')];
+
+    function estimateLevel(total, bands){
+      if (total <= 6) return ['A1', 'You can manage very basic everyday English, but you still need support with core grammar and common structures.'];
+      if (total <= 12) return ['A2', 'You can handle simple routine communication and familiar topics, though accuracy is still developing.'];
+      if (total <= 20) return ['B1', 'You show an intermediate level and can deal with many practical situations using connected language.'];
+      if (total <= 28) return ['B2', 'You can use English independently with good control in a wide range of everyday and work-related contexts.'];
+      if (total <= 35) return ['C1', 'You show advanced control of grammar and meaning, with strong comprehension of more demanding language.'];
+      return ['C2', 'You demonstrate very high control, precision, and flexibility across the full range of question difficulty.'];
+    }
+
+    function calculateResults(markAnswers){
+      let total = 0;
+      const bandScores = [0,0,0,0];
+      const weakAreas = [];
+      if (markAnswers) document.querySelectorAll('.option').forEach(label => label.classList.remove('correct','incorrect'));
+
+      questions.forEach((item, index) => {
+        const selected = form.querySelector(`input[name="q${index}"]:checked`);
+        const all = form.querySelectorAll(`input[name="q${index}"]`);
+        const bandIndex = Math.floor(index / 10);
+        if (markAnswers) {
+          all.forEach(input => {
+            if (Number(input.value) === item.a) input.closest('.option').classList.add('correct');
+          });
+        }
+        if (selected && Number(selected.value) === item.a) {
+          total++;
+          bandScores[bandIndex]++;
+        } else {
+          weakAreas.push(item.f);
+          if (markAnswers && selected) selected.closest('.option').classList.add('incorrect');
+        }
+      });
+      return {total, bandScores, weakAreas};
+    }
+
+
+
+    function getSelectedAnswersSummary(){
+      return questions.map((item, index) => {
+        const selected = form.querySelector(`input[name="q${index}"]:checked`);
+        const selectedIndex = selected ? Number(selected.value) : null;
+        const selectedText = selectedIndex !== null ? item.o[selectedIndex] : 'No answer';
+        const correctText = item.o[item.a];
+        return `${index + 1}. ${item.q.replace(/^\d+\.\s*/, '')}\nStudent answer: ${selectedText}\nCorrect answer: ${correctText}`;
+      }).join('\n\n');
+    }
+
+    function buildTeacherEmailBody(saved, email){
+      const [level, message] = estimateLevel(saved.total, saved.bandScores);
+      const weakAreas = [...new Set(saved.weakAreas || [])].slice(0,8).join('\n- ') || 'No weak areas identified.';
+      return `ESL CONNECT CEFR Entry Test Result\n\nStudent email: ${email}\nDate: ${new Date().toLocaleString()}\nEstimated CEFR level: ${level}\nScore: ${saved.total} / 40\nBand 1: ${saved.bandScores[0]} / 10\nBand 2: ${saved.bandScores[1]} / 10\nBand 3: ${saved.bandScores[2]} / 10\nBand 4: ${saved.bandScores[3]} / 10\n\nLevel summary:\n${message}\n\nStudy focus:\n- ${weakAreas}\n\nAnswers:\n${getSelectedAnswersSummary()}`;
+    }
+
+    function submitResultToTeacher(saved, email){
+      const [level] = estimateLevel(saved.total, saved.bandScores);
+      const iframeName = 'result-submit-frame';
+      const existing = document.getElementById('teacher-result-form');
+      if (existing) existing.remove();
+      const teacherForm = document.createElement('form');
+      teacherForm.id = 'teacher-result-form';
+      teacherForm.method = 'POST';
+      teacherForm.action = 'https://formsubmit.co/englishconnecter@gmail.com';
+      teacherForm.target = iframeName;
+      teacherForm.style.display = 'none';
+      const fields = {
+        _subject: `ESL CONNECT CEFR Entry Test Result - ${email} - ${level}`,
+        _captcha: 'false',
+        _template: 'table',
+        student_email: email,
+        estimated_level: level,
+        score: `${saved.total} / 40`,
+        band_1: `${saved.bandScores[0]} / 10`,
+        band_2: `${saved.bandScores[1]} / 10`,
+        band_3: `${saved.bandScores[2]} / 10`,
+        band_4: `${saved.bandScores[3]} / 10`,
+        full_result: buildTeacherEmailBody(saved, email)
+      };
+      Object.entries(fields).forEach(([name, value]) => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = name;
+        input.value = value;
+        teacherForm.appendChild(input);
+      });
+      document.body.appendChild(teacherForm);
+      teacherForm.submit();
+      if (sendStatus) {
+        sendStatus.textContent = 'Result sent to ESL Connect.';
+        sendStatus.className = 'send-status ok';
+      }
+    }
+
+    function renderResults(saved){
+      const total = saved.total;
+      const bandScores = saved.bandScores;
+      const weakAreas = saved.weakAreas || [];
+      const [level, message] = estimateLevel(total, bandScores);
+      levelBadge.textContent = level;
+      scoreText.textContent = `${total} / 40 correct`;
+      levelText.textContent = message;
+      bandEls[0].textContent = `${bandScores[0]} / 10`;
+      bandEls[1].textContent = `${bandScores[1]} / 10`;
+      bandEls[2].textContent = `${bandScores[2]} / 10`;
+      bandEls[3].textContent = `${bandScores[3]} / 10`;
+
+      feedbackList.innerHTML = '';
+      [...new Set(weakAreas)].slice(0,6).forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        feedbackList.appendChild(li);
+      });
+      if (!feedbackList.children.length) {
+        const li = document.createElement('li');
+        li.textContent = 'Excellent control across all bands. Continue with longer reading, listening, and writing tasks to confirm your level in real communication.';
+        feedbackList.appendChild(li);
+      }
+
+      document.querySelectorAll('.option').forEach(label => label.classList.remove('correct','incorrect'));
+      questions.forEach((item, index) => {
+        const selected = form.querySelector(`input[name="q${index}"]:checked`);
+        const all = form.querySelectorAll(`input[name="q${index}"]`);
+        all.forEach(input => {
+          if (Number(input.value) === item.a) input.closest('.option').classList.add('correct');
+        });
+        if (selected && Number(selected.value) !== item.a) selected.closest('.option').classList.add('incorrect');
+      });
+
+      if (loginGate) loginGate.classList.remove('show');
+      form.classList.add('completed-result-mode');
+      resultBox.classList.add('show');
+      resultBox.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const saved = calculateResults(false);
+      saved.submittedAt = new Date().toISOString();
+      localStorage.setItem('eslc-cefr-entry-result', JSON.stringify(saved));
+      localStorage.setItem('eslc-cefr-entry-answers', JSON.stringify([...form.querySelectorAll('input[type="radio"]:checked')].map(input => [input.name, input.value])));
+      localStorage.setItem('eslc-cefr-entry-submitted', '1');
+      document.querySelectorAll('.option').forEach(label => label.classList.remove('correct','incorrect'));
+      resultBox.classList.remove('show');
+      if (sendStatus) { sendStatus.textContent = ''; sendStatus.className = 'send-status'; }
+      if (loginGate) {
+        loginGate.classList.add('show');
+        loginGate.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+      if (studentEmailInput) studentEmailInput.focus();
+    });
+
+    if (emailLoginForm) {
+      emailLoginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = studentEmailInput.value.trim();
+        if (!email) return;
+        const savedResult = localStorage.getItem('eslc-cefr-entry-result');
+        if (!savedResult) return;
+        let saved;
+        try { saved = JSON.parse(savedResult); } catch (err) { return; }
+        saved.studentEmail = email;
+        saved.emailSubmittedAt = new Date().toISOString();
+        localStorage.setItem('eslc-cefr-entry-result', JSON.stringify(saved));
+        localStorage.setItem('eslc-cefr-entry-email', email);
+        submitResultToTeacher(saved, email);
+        renderResults(saved);
+      });
+    }
+
+    function restoreSavedAnswers(){
+      const savedAnswers = localStorage.getItem('eslc-cefr-entry-answers');
+      if (!savedAnswers) return;
+      try {
+        JSON.parse(savedAnswers).forEach(([name, value]) => {
+          const input = form.querySelector(`input[name="${name}"][value="${value}"]`);
+          if (input) input.checked = true;
+        });
+      } catch (err) {}
+    }
+
+    function showSavedResultIfAvailable(){
+      const savedResult = localStorage.getItem('eslc-cefr-entry-result');
+      if (!savedResult) return false;
+      restoreSavedAnswers();
+      try {
+        const saved = JSON.parse(savedResult);
+        const email = saved.studentEmail || localStorage.getItem('eslc-cefr-entry-email');
+        if (email) {
+          saved.studentEmail = email;
+          renderResults(saved);
+          return true;
+        }
+        if (loginGate) loginGate.classList.add('show');
+        return false;
+      } catch (err) {
+        return false;
+      }
+    }
+
+    // Show saved results automatically after login or when the student returns to this page.
+    // This prevents students from having to repeat the test.
+    showSavedResultIfAvailable();
+
+
+    const newTestBtn = document.getElementById('new-test-btn');
+    if (newTestBtn) {
+      newTestBtn.addEventListener('click', () => {
+        localStorage.removeItem('eslc-cefr-entry-result');
+        localStorage.removeItem('eslc-cefr-entry-answers');
+        localStorage.removeItem('eslc-cefr-entry-submitted');
+      localStorage.removeItem('eslc-cefr-entry-email');
+        localStorage.removeItem('eslc-cefr-entry-email');
+        form.reset();
+        form.classList.remove('completed-result-mode');
+        document.querySelectorAll('.option').forEach(label => label.classList.remove('correct','incorrect'));
+        resultBox.classList.remove('show');
+        if (loginGate) loginGate.classList.remove('show');
+        feedbackList.innerHTML = '';
+        form.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    }
+
+    document.addEventListener('reset', () => {
+      document.querySelectorAll('.option').forEach(label => label.classList.remove('correct','incorrect'));
+      resultBox.classList.remove('show');
+      form.classList.remove('completed-result-mode');
+      if (loginGate) loginGate.classList.remove('show');
+      localStorage.removeItem('eslc-cefr-entry-result');
+      localStorage.removeItem('eslc-cefr-entry-answers');
+      localStorage.removeItem('eslc-cefr-entry-submitted');
+      feedbackList.innerHTML = '';
+    });
+  </script>
+
+
+</body></html>
