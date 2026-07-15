@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ESL CONNECT - TOEFL Listening Practice Test</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root,[data-theme="light"]{
+  --bg:#f7f6f2;--surface:#f9f8f5;--surface-2:#fff;--border:#d4d1ca;--text:#28251d;--muted:#6d6a63;
+  --primary:#01696f;--primary-hover:#0c4e54;--primary-soft:#cedcd8;--success:#437a22;--error:#a12c7b;
+  --shadow:0 10px 28px rgba(40,37,29,.08);--font-body:'Source Sans 3',Arial,sans-serif;--font-display:'Libre Baskerville',Georgia,serif;
+}
+[data-theme="dark"]{
+  --bg:#171614;--surface:#1c1b19;--surface-2:#201f1d;--border:#393836;--text:#e2dfd8;--muted:#b1aea8;
+  --primary:#4f98a3;--primary-hover:#67afb8;--primary-soft:#313b3b;--success:#86be60;--error:#df7cb6;
+  --shadow:0 10px 28px rgba(0,0,0,.26);
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--font-body);font-size:1.05rem;line-height:1.6;background:linear-gradient(180deg,var(--bg),var(--surface));color:var(--text)}
+button,input,textarea{font:inherit} .page{width:min(1000px,calc(100% - 1.5rem));margin:0 auto;padding:1rem 0 4rem}
+.eslc-banner{background:#06142A;color:#fff;padding:28px 22px;border-radius:0 0 22px 22px;box-shadow:0 10px 24px rgba(0,0,0,.18);margin:0 0 24px}
+.eslc-banner-inner{max-width:1120px;margin:0 auto;display:flex;align-items:center;gap:18px}
+.eslc-logo-link{width:96px;height:96px;display:flex;align-items:center;justify-content:center;border-radius:18px;background:#fff;border:3px solid #FFF9C4;box-shadow:0 10px 24px rgba(0,0,0,.22);text-decoration:none;flex:0 0 auto}
+.eslc-logo-fallback{color:#06142A;font-weight:900;font-size:14px;text-align:center;line-height:1.05;font-family:Arial,Helvetica,sans-serif}
+.eslc-banner h1{margin:0 0 6px;color:#fff;font-family:Arial,Helvetica,sans-serif;font-size:clamp(1.8rem,4vw,3rem);line-height:1.05}
+.eslc-banner p{margin:0;color:rgba(255,255,255,.82)}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.brand{font-weight:800;color:var(--primary)} .theme-toggle{min-width:44px;min-height:44px;border:1px solid var(--border);border-radius:.75rem;background:var(--surface-2);color:var(--text);cursor:pointer}
+.hero,.overview,.passage-card,.question-card,.result-box,.speaking-card,.tabbar,.timer-card{background:color-mix(in srgb,var(--surface-2) 90%,transparent);border:1px solid var(--border);border-radius:1rem;box-shadow:var(--shadow)}
+.hero{padding:clamp(1.5rem,4vw,3rem);margin-bottom:1.5rem}
+.eyebrow,.section-label{display:inline-block;padding:.35rem .75rem;border-radius:999px;background:var(--primary-soft);color:var(--primary);font-size:.9rem;font-weight:800;margin-bottom:.75rem}
+h1,h2,h3{font-family:var(--font-display);line-height:1.15;margin:0 0 1rem}
+h1{font-size:clamp(2rem,1.2rem + 2.5vw,3.2rem)} h2{font-size:clamp(1.45rem,1.1rem + 1.25vw,2.1rem)} p{margin:.25rem 0 .75rem}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-top:1.25rem}
+.meta div{padding:1rem;background:var(--surface);border:1px solid var(--border);border-radius:.75rem}
+.tabbar{display:flex;gap:.5rem;flex-wrap:wrap;padding:.75rem;margin-bottom:1.25rem;position:sticky;top:.5rem;z-index:5}
+.tab{border:1px solid var(--border);border-radius:.75rem;padding:.75rem .9rem;background:var(--surface-2);color:var(--text);font-weight:800;cursor:pointer}
+.tab.active{background:var(--primary);color:#fff;border-color:var(--primary)} .module{display:none} .module.active{display:block}
+.overview,.passage-card,.question-card,.speaking-card,.timer-card{padding:1.25rem;margin-bottom:1rem}
+fieldset{border:0;margin:0;padding:0} legend{font-weight:800;margin-bottom:.75rem}
+.options{display:grid;gap:.75rem;margin-top:.75rem}
+.option{display:flex;gap:.75rem;align-items:flex-start;padding:.95rem 1rem;border:1px solid var(--border);border-radius:.75rem;background:var(--surface);cursor:pointer}
+.option input{margin-top:.25rem;accent-color:var(--primary);transform:scale(1.1)}
+.option.correct{border-color:var(--success);background:color-mix(in srgb,var(--success) 12%,var(--surface-2))}
+.option.incorrect{border-color:var(--error);background:color-mix(in srgb,var(--error) 10%,var(--surface-2))}
+.actions{display:flex;gap:1rem;flex-wrap:wrap;margin:1rem 0}
+button{min-width:44px;min-height:44px;border:0;border-radius:.75rem;padding:.9rem 1.2rem;font-weight:800;cursor:pointer}
+.btn-primary{background:var(--primary);color:#fff} .btn-primary:hover{background:var(--primary-hover)}
+.btn-secondary{background:var(--surface-2);border:1px solid var(--border);color:var(--text)}
+.result-box{display:block;margin-top:1rem;padding:1rem} .soundcloud{width:100%;height:420px;border:0;border-radius:.75rem;margin:.5rem 0 1rem}
+textarea{width:100%;min-height:240px;border:1px solid var(--border);border-radius:.75rem;background:var(--surface-2);color:var(--text);padding:1rem;resize:vertical}
+.word-count{color:var(--muted);font-weight:800} .speaking-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+.note{padding:1rem;background:var(--surface);border:1px solid var(--border);border-radius:.75rem;margin:.75rem 0;color:var(--muted)}
+.footer-note{margin-top:1.5rem;color:var(--muted);font-size:.9rem}
+@media(max-width:720px){.eslc-banner-inner{align-items:flex-start;flex-direction:column}.eslc-logo-link{width:88px;height:88px}.page{width:min(100% - .75rem,1000px)}.soundcloud{height:360px}}
+
+/* Mobile legibility upgrade */
+:root,[data-theme="light"]{
+  --bg:#eef5f8!important;
+  --surface:#f7fbfd!important;
+  --surface-2:#ffffff!important;
+  --border:#9fb6c3!important;
+  --text:#102027!important;
+  --muted:#334e5a!important;
+  --primary:#005f6b!important;
+  --primary-hover:#00424c!important;
+  --primary-soft:#d8f0f2!important;
+  --success:#236b34!important;
+  --error:#9f1f4f!important;
+}
+[data-theme="dark"]{
+  --bg:#0f171a!important;
+  --surface:#152125!important;
+  --surface-2:#1d2a2f!important;
+  --border:#5f7984!important;
+  --text:#f4fbfd!important;
+  --muted:#d2e1e6!important;
+  --primary:#7edce5!important;
+  --primary-hover:#a8edf2!important;
+  --primary-soft:#203b40!important;
+}
+body{color:var(--text)!important;background:var(--bg)!important;}
+p,li,legend,label,textarea,.option span{color:var(--text)!important;}
+.note,.footer-note,.word-count{color:var(--muted)!important;}
+.hero,.overview,.passage-card,.question-card,.result-box,.speaking-card,.timer-card{background:#ffffff!important;border:1.5px solid var(--border)!important;}
+[data-theme="dark"] .hero,[data-theme="dark"] .overview,[data-theme="dark"] .passage-card,[data-theme="dark"] .question-card,[data-theme="dark"] .result-box,[data-theme="dark"] .speaking-card,[data-theme="dark"] .timer-card{background:#1d2a2f!important;}
+.option{background:#f8fcfd!important;border:2px solid #a8bdc8!important;}
+[data-theme="dark"] .option{background:#24343a!important;border-color:#6f8791!important;}
+.option:has(input:checked){border-color:var(--primary)!important;box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 22%,transparent)!important;}
+.option.correct{border-color:var(--success)!important;background:#e8f7ec!important;}
+.option.incorrect{border-color:var(--error)!important;background:#fde8f1!important;}
+.btn-primary,.tab.active{background:#005f6b!important;color:#ffffff!important;border-color:#005f6b!important;}
+.btn-secondary,.tab{background:#ffffff!important;color:#102027!important;border:1.5px solid var(--border)!important;}
+.eyebrow,.section-label{background:#d8f0f2!important;color:#003f47!important;}
+textarea{background:#ffffff!important;color:#102027!important;border:2px solid #9fb6c3!important;font-size:1rem!important;}
+[data-theme="dark"] textarea{background:#111b1f!important;color:#f4fbfd!important;}
+.eslc-banner{background:#06142A!important;}
+@media(max-width:720px){
+  body{font-size:1rem!important;line-height:1.55!important;}
+  .page{width:100%!important;padding:0 .75rem 3rem!important;margin:0 auto!important;}
+  .eslc-banner{padding:20px 16px!important;margin-bottom:14px!important;border-radius:0 0 16px 16px!important;}
+  .eslc-banner h1{font-size:1.75rem!important;line-height:1.12!important;}
+  .eslc-banner p{font-size:.98rem!important;color:#eef6ff!important;}
+  .eslc-logo-link{width:76px!important;height:76px!important;}
+  .topbar{padding:.75rem!important;margin-bottom:1rem!important;}
+  .hero,.overview,.passage-card,.question-card,.result-box,.speaking-card,.timer-card{padding:1rem!important;border-radius:14px!important;margin-bottom:.85rem!important;box-shadow:0 4px 14px rgba(16,32,39,.08)!important;}
+  h1{font-size:1.8rem!important;}
+  h2{font-size:1.38rem!important;}
+  legend{font-size:1.03rem!important;line-height:1.35!important;}
+  .tabbar{position:sticky!important;top:0!important;background:#eef5f8!important;padding:.5rem!important;gap:.4rem!important;border-radius:0 0 14px 14px!important;}
+  .tab{flex:1 1 calc(50% - .4rem)!important;padding:.72rem .55rem!important;font-size:.95rem!important;}
+  .options{gap:.6rem!important;}
+  .option{padding:.9rem .85rem!important;border-radius:12px!important;min-height:52px!important;}
+  .option input{transform:scale(1.25)!important;margin-top:.3rem!important;}
+  .soundcloud{height:320px!important;border:2px solid var(--border)!important;}
+  textarea{min-height:180px!important;font-size:1rem!important;}
+  .actions{position:sticky!important;bottom:.5rem!important;background:rgba(238,245,248,.94)!important;padding:.6rem!important;border:1px solid var(--border)!important;border-radius:14px!important;z-index:4!important;}
+  .actions button{flex:1 1 100%!important;min-height:48px!important;}
+}
+
+
+/* Email login gate */
+.login-gate{
+  min-height:calc(100vh - 150px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:1rem;
+}
+.login-card{
+  width:min(560px,100%);
+  background:#ffffff;
+  border:2px solid var(--border);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  padding:clamp(1.25rem,4vw,2.25rem);
+}
+[data-theme="dark"] .login-card{
+  background:#1d2a2f;
+}
+.login-card h2{
+  margin-bottom:.5rem;
+}
+.login-card p{
+  color:var(--muted);
+  margin-bottom:1rem;
+}
+.email-row{
+  display:grid;
+  gap:.75rem;
+}
+.email-row label{
+  font-weight:800;
+}
+.email-row input{
+  width:100%;
+  min-height:52px;
+  border:2px solid var(--border);
+  border-radius:14px;
+  padding:.85rem 1rem;
+  background:#fff;
+  color:#102027;
+  font-size:1rem;
+}
+[data-theme="dark"] .email-row input{
+  background:#111b1f;
+  color:#f4fbfd;
+}
+.login-error{
+  color:var(--error);
+  font-weight:800;
+  min-height:1.4rem;
+}
+.student-chip{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  background:var(--primary-soft);
+  color:var(--primary);
+  border:1px solid var(--border);
+  border-radius:999px;
+  padding:.4rem .75rem;
+  font-weight:800;
+}
+.logout-btn{
+  background:#ffffff!important;
+  color:#102027!important;
+  border:1.5px solid var(--border)!important;
+}
+[data-theme="dark"] .logout-btn{
+  background:#1d2a2f!important;
+  color:#f4fbfd!important;
+}
+#test-shell.is-locked{
+  display:none;
+}
+@media(max-width:720px){
+  .login-gate{
+    min-height:auto;
+    padding:.75rem;
+  }
+  .login-card{
+    border-radius:16px;
+    padding:1rem;
+  }
+  .email-row input{
+    font-size:1rem;
+    min-height:50px;
+  }
+}
+
+</style>
+</head>
+<body>
+<div class="eslc-banner">
+  <div class="eslc-banner-inner">
+    <a class="eslc-logo-link" href="https://www.eslconnect.net/" target="_blank" rel="noopener" aria-label="Visit ESL CONNECT website"><span class="eslc-logo-fallback">ESL<br>CONNECT</span></a>
+    <div><h1>Interactive TOEFL Practice Test</h1><p>ESL CONNECT · Reading · Listening · Writing · Speaking</p></div>
+  </div>
+</div>
+
+
+<section id="login-gate" class="login-gate" aria-label="Email login">
+  <div class="login-card">
+    <span class="eyebrow">Student login</span>
+    <h2>Enter your email to start the TOEFL test</h2>
+    <p>Your email is saved only in this browser so your teacher can identify who is completing the test.</p>
+    <form id="email-login-form" class="email-row">
+      <label for="student-email">Email address</label>
+      <input id="student-email" name="student-email" type="email" placeholder="name@example.com" autocomplete="email" required>
+      <p id="login-error" class="login-error" aria-live="polite"></p>
+      <button class="btn-primary" type="submit">Start test</button>
+    </form>
+  </div>
+</section>
+
+<div id="test-shell" class="is-locked">
+<div class="page">
+<header class="topbar"><div class="brand">TOEFL Listening Practice Playlist</div><span id="student-chip" class="student-chip" style="display:none"></span><button class="logout-btn" type="button" id="logout-btn" style="display:none">Change email</button><button class="theme-toggle" type="button" data-theme-toggle>◐</button></header>
+
+<main>
+<section class="hero">
+  <span class="eyebrow">TOEFL practice</span>
+  <h1>TOEFL test using the SoundCloud listening-practice playlist</h1>
+  <p>The Listening section streams audio from the SoundCloud playlist you provided. Reading and Listening include instant-check practice questions.</p>
+  <div class="meta">
+    <div><strong>Reading</strong><br>1 passage · 8 questions</div>
+    <div><strong>Listening</strong><br>SoundCloud playlist player</div>
+    <div><strong>Writing</strong><br>Integrated + discussion</div>
+    <div><strong>Speaking</strong><br>4 TOEFL-style tasks</div>
+  </div>
+</section>
+
+<nav class="tabbar">
+  <button class="tab active" data-module="reading" type="button">Reading</button>
+  <button class="tab" data-module="listening" type="button">Listening</button>
+  <button class="tab" data-module="writing" type="button">Writing</button>
+  <button class="tab" data-module="speaking" type="button">Speaking</button>
+</nav>
+
+<section class="module active" id="reading">
+  <section class="overview"><h2>TOEFL Reading Section</h2><p>Read the passage and answer the questions. Click “Check Reading” for instant feedback.</p></section>
+  <section class="passage-card">
+    <span class="eyebrow">Reading Passage</span>
+    <h2>The Importance of Wetlands</h2>
+    <p>Wetlands are areas where water covers the soil or remains near the surface for much of the year. Although they were once dismissed as useless or unhealthy places, scientists now recognize wetlands as some of the most productive ecosystems on Earth. They filter water by trapping pollutants and excess nutrients, and they provide habitat for birds, fish, insects, and amphibians.</p>
+    <p>Wetlands also help protect communities from floods. During heavy rain, they absorb and store large amounts of water, releasing it slowly over time. This reduces the force of floodwaters and helps prevent damage to nearby towns. When wetlands are drained or filled for construction, that natural protection disappears, and flooding can become more severe.</p>
+    <p>Despite their benefits, wetlands continue to be threatened by agriculture, housing, and industrial development. Conservationists argue that protecting wetlands is more cost-effective than repairing flood damage or building artificial water treatment systems. In many cities, planners are now restoring wetlands as part of parks and green infrastructure projects.</p>
+  </section>
+  
+    <section class="question-card">
+      <span class="section-label">Question 1 · Main Idea</span>
+      <fieldset>
+        <legend>What is the main purpose of the passage?</legend>
+        <div class="options"><label class="option">
+          <input type="radio" name="r1" value="A">
+          <span><strong>A.</strong> To compare birds and mammals</span>
+        </label>
+<label class="option">
+          <input type="radio" name="r1" value="B">
+          <span><strong>B.</strong> To explain how wetlands protect ecosystems</span>
+        </label>
+<label class="option">
+          <input type="radio" name="r1" value="C">
+          <span><strong>C.</strong> To describe tourism near rivers</span>
+        </label>
+<label class="option">
+          <input type="radio" name="r1" value="D">
+          <span><strong>D.</strong> To argue against urban development</span>
+        </label></div>
+      </fieldset>
+    </section>
+    
+
+    <section class="question-card">
+      <span class="section-label">Question 2 · Vocabulary</span>
+      <fieldset>
+        <legend>The word &quot;filter&quot; in paragraph 1 is closest in meaning to:</legend>
+        <div class="options"><label class="option">
+          <input type="radio" name="r2" value="A">
+          <span><strong>A.</strong> store</span>
+        </label>
+<label class="option">
+          <input type="radio" name="r2" value="B">
+          <span><strong>B.</strong> damage</span>
+        </label>
+<label class="option">
+          <input type="radio" name="r2" value="C">
+          <span><strong>C.</strong> clean</span>
+        </label>
+<label class="option">
+          <input type="radio" name="r2" value="D">
+          <span><strong>D.</strong> heat</span>
+        </label></div>
+      </fieldset>
+    </section>
+    
+
+    <section class="question-card">
+      <span class="section-label">Question 3 · Detail</span>
+      <fieldset>
+        <legend>According to the passage, which animals may depend on wetlands?</legend>
+        <div class="options"><label class="option">
+          <input type="radio" name="r3" value="A">
+          <span><strong>A.</strong> Only large mammals</span>
+        </label>
+<label class="option">
+          <input type="radio" name="r3" value="B">
+          <span><strong>B.</strong> Only insects</span>
+        </label>
+<label class="option">
+          <input type="radio" name="r3" value="C">
+          <span><strong>C.</strong> Only fish</span>
+        </label>
+<label class="option">
+          <input type="radio" name="r3" value="D">
+          <span><strong>D.</strong> Birds, fish, insects, and amphibians</span>
+        </label></div>
+      </fieldset>
+    </section>
+    
+
+    <section class="question-card">
+      <span class="section-label">Question 4 · Inference</span>
+      <fieldset>
+        <legend>What can be inferred about removing wetlands?</legend>
+        <div class="options"><label class="option">
+          <input type="radio" name="r4" value="A">
+          <span><strong>A.</strong> It can make flooding worse.</span>
+        </label>
+<label class="option">
+          <input type="radio" name="r4" value="B">
+          <span><strong>B.</strong> It immediately improves water quality.</span>
+        </label>
+<label class="option">
+          <input type="radio" name="r4" value="C">
+          <span><strong>C.</strong> It increases biodiversity.</span>
+        </label>
+<label class="option">
+          <input type="radio" name="r4" value="D">
+          <span><strong>D.</strong> It makes rivers disappear completely.</span>
+        </label></div>
+      </fieldset>
+    </section>
+    
+
+    <section class="question-card">
+      <span class="section-label">Question 5 · Negative Detail</span>
+      <fieldset>
+        <legend>Which benefit of wetlands is NOT mentioned?</legend>
+        <div class="options"><label class="option">
+          <input type="radio" name="r5" value="A">
+          <span><strong>A.</strong> Reducing floods</span>
+        </label>
+<label class="option">
+          <input type="radio" name="r5" value="B">
+          <span><strong>B.</strong> Supporting wildlife</span>
+        </label>
+<label class="option">
+          <input type="radio" name="r5" value="C">
+          <span><strong>C.</strong> Producing electricity</span>
+        </label>
+<label class="option">
+          <input type="radio" name="r5" value="D">
+          <span><strong>D.</strong> Improving water quality</span>
+        </label></div>
+      </fieldset>
+    </section>
+    
+
+    <section class="question-card">
+      <span class="section-label">Question 6 · Author Purpose</span>
+      <fieldset>
+        <legend>Why does the author mention cities in the final paragraph?</legend>
+        <div class="options"><label class="option">
+          <input type="radio" name="r6" value="A">
+          <span><strong>A.</strong> To show that cities have no natural areas</span>
+        </label>
+<label class="option">
+          <input type="radio" name="r6" value="B">
+          <span><strong>B.</strong> To prove that wetlands only exist in rural regions</span>
+        </label>
+<label class="option">
+          <input type="radio" name="r6" value="C">
+          <span><strong>C.</strong> To describe the history of urban parks</span>
+        </label>
+<label class="option">
+          <input type="radio" name="r6" value="D">
+          <span><strong>D.</strong> To show that wetland protection can be part of urban planning</span>
+        </label></div>
+      </fieldset>
+    </section>
+    
+
+    <section class="question-card">
+      <span class="section-label">Question 7 · Reference</span>
+      <fieldset>
+        <legend>The word &quot;they&quot; in paragraph 2 refers to:</legend>
+        <div class="options"><label class="option">
+          <input type="radio" name="r7" value="A">
+          <span><strong>A.</strong> storms</span>
+        </label>
+<label class="option">
+          <input type="radio" name="r7" value="B">
+          <span><strong>B.</strong> wetlands</span>
+        </label>
+<label class="option">
+          <input type="radio" name="r7" value="C">
+          <span><strong>C.</strong> pollutants</span>
+        </label>
+<label class="option">
+          <input type="radio" name="r7" value="D">
+          <span><strong>D.</strong> cities</span>
+        </label></div>
+      </fieldset>
+    </section>
+    
+
+    <section class="question-card">
+      <span class="section-label">Question 8 · Summary</span>
+      <fieldset>
+        <legend>Which sentence best summarizes the passage?</legend>
+        <div class="options"><label class="option">
+          <input type="radio" name="r8" value="A">
+          <span><strong>A.</strong> Wetlands provide environmental benefits, but they are often threatened by development.</span>
+        </label>
+<label class="option">
+          <input type="radio" name="r8" value="B">
+          <span><strong>B.</strong> Wetlands are useful only for birds and fish.</span>
+        </label>
+<label class="option">
+          <input type="radio" name="r8" value="C">
+          <span><strong>C.</strong> Wetlands should be replaced by housing.</span>
+        </label>
+<label class="option">
+          <input type="radio" name="r8" value="D">
+          <span><strong>D.</strong> Wetlands are dangerous because they cause flooding.</span>
+        </label></div>
+      </fieldset>
+    </section>
+    
+  <div class="actions"><button class="btn-primary" type="button" onclick="checkSection('r',8,'reading-score')">Check Reading</button><button class="btn-secondary" type="button" onclick="clearSection('r',8,'reading-score')">Reset Reading</button></div>
+  <section class="result-box"><strong>Student:</strong> <span class="student-result-email"></span><br><strong>Reading score:</strong> <span id="reading-score">0 / 8</span></section>
+</section>
+
+<section class="module" id="listening">
+  <section class="overview"><h2>TOEFL Listening Section</h2><p>Listen to the SoundCloud playlist below, then answer the strategy-based TOEFL listening questions and complete the note sheet.</p></section>
+  <section class="passage-card">
+    <span class="eyebrow">SoundCloud playlist</span>
+    <h2>TOEFL Listening Practice</h2>
+    <iframe class="soundcloud" scrolling="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fuser-653929475%2Fsets%2Ftoefl-listening-practice&color=%2301696f&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+    <div class="note">This player streams from SoundCloud and requires internet access.</div>
+  </section>
+  
+    <section class="question-card">
+      <span class="section-label">Listening Question 1 · Main Idea</span>
+      <fieldset>
+        <legend>What is the conversation or lecture mainly about?</legend>
+        <div class="options"><label class="option">
+          <input type="radio" name="l1" value="A">
+          <span><strong>A.</strong> A student’s social plans</span>
+        </label>
+<label class="option">
+          <input type="radio" name="l1" value="B">
+          <span><strong>B.</strong> A university or academic topic</span>
+        </label>
+<label class="option">
+          <input type="radio" name="l1" value="C">
+          <span><strong>C.</strong> A sports competition</span>
+        </label>
+<label class="option">
+          <input type="radio" name="l1" value="D">
+          <span><strong>D.</strong> A travel advertisement</span>
+        </label></div>
+      </fieldset>
+    </section>
+    
+
+    <section class="question-card">
+      <span class="section-label">Listening Question 2 · Detail</span>
+      <fieldset>
+        <legend>What should you listen for when answering TOEFL detail questions?</legend>
+        <div class="options"><label class="option">
+          <input type="radio" name="l2" value="A">
+          <span><strong>A.</strong> Only the final sentence</span>
+        </label>
+<label class="option">
+          <input type="radio" name="l2" value="B">
+          <span><strong>B.</strong> The speaker’s accent</span>
+        </label>
+<label class="option">
+          <input type="radio" name="l2" value="C">
+          <span><strong>C.</strong> Specific facts, examples, or reasons</span>
+        </label>
+<label class="option">
+          <input type="radio" name="l2" value="D">
+          <span><strong>D.</strong> The background music</span>
+        </label></div>
+      </fieldset>
+    </section>
+    
+
+    <section class="question-card">
+      <span class="section-label">Listening Question 3 · Purpose</span>
+      <fieldset>
+        <legend>Why might a professor give an example in a lecture?</legend>
+        <div class="options"><label class="option">
+          <input type="radio" name="l3" value="A">
+          <span><strong>A.</strong> To clarify an abstract concept</span>
+        </label>
+<label class="option">
+          <input type="radio" name="l3" value="B">
+          <span><strong>B.</strong> To change the subject completely</span>
+        </label>
+<label class="option">
+          <input type="radio" name="l3" value="C">
+          <span><strong>C.</strong> To test the microphone</span>
+        </label>
+<label class="option">
+          <input type="radio" name="l3" value="D">
+          <span><strong>D.</strong> To end the lecture early</span>
+        </label></div>
+      </fieldset>
+    </section>
+    
+
+    <section class="question-card">
+      <span class="section-label">Listening Question 4 · Attitude</span>
+      <fieldset>
+        <legend>What can intonation help you understand?</legend>
+        <div class="options"><label class="option">
+          <input type="radio" name="l4" value="A">
+          <span><strong>A.</strong> The price of a textbook</span>
+        </label>
+<label class="option">
+          <input type="radio" name="l4" value="B">
+          <span><strong>B.</strong> A speaker’s attitude or certainty</span>
+        </label>
+<label class="option">
+          <input type="radio" name="l4" value="C">
+          <span><strong>C.</strong> The spelling of a word</span>
+        </label>
+<label class="option">
+          <input type="radio" name="l4" value="D">
+          <span><strong>D.</strong> The number of pages in a handout</span>
+        </label></div>
+      </fieldset>
+    </section>
+    
+
+    <section class="question-card">
+      <span class="section-label">Listening Question 5 · Organisation</span>
+      <fieldset>
+        <legend>What should you identify in a lecture?</legend>
+        <div class="options"><label class="option">
+          <input type="radio" name="l5" value="A">
+          <span><strong>A.</strong> Only the title</span>
+        </label>
+<label class="option">
+          <input type="radio" name="l5" value="B">
+          <span><strong>B.</strong> Only jokes</span>
+        </label>
+<label class="option">
+          <input type="radio" name="l5" value="C">
+          <span><strong>C.</strong> Only names</span>
+        </label>
+<label class="option">
+          <input type="radio" name="l5" value="D">
+          <span><strong>D.</strong> The main idea and supporting points</span>
+        </label></div>
+      </fieldset>
+    </section>
+    
+
+    <section class="question-card">
+      <span class="section-label">Listening Question 6 · Inference</span>
+      <fieldset>
+        <legend>In TOEFL Listening, an inference question asks you to understand:</legend>
+        <div class="options"><label class="option">
+          <input type="radio" name="l6" value="A">
+          <span><strong>A.</strong> Something implied but not directly stated</span>
+        </label>
+<label class="option">
+          <input type="radio" name="l6" value="B">
+          <span><strong>B.</strong> Only dates and numbers</span>
+        </label>
+<label class="option">
+          <input type="radio" name="l6" value="C">
+          <span><strong>C.</strong> The exact transcript punctuation</span>
+        </label>
+<label class="option">
+          <input type="radio" name="l6" value="D">
+          <span><strong>D.</strong> The recording quality</span>
+        </label></div>
+      </fieldset>
+    </section>
+    
+  <div class="actions"><button class="btn-primary" type="button" onclick="checkSection('l',6,'listening-score')">Check Listening</button><button class="btn-secondary" type="button" onclick="clearSection('l',6,'listening-score')">Reset Listening</button></div>
+  <section class="result-box"><strong>Student:</strong> <span class="student-result-email"></span><br><strong>Listening score:</strong> <span id="listening-score">0 / 6</span></section>
+  <section class="timer-card">
+    <span class="section-label">Listening note sheet</span>
+    <h2>Track notes</h2>
+    <label><strong>Track number / title</strong></label>
+    <textarea id="listen-track" style="min-height:80px" placeholder="Example: Track 1 - lecture about biology"></textarea>
+    <label><strong>Main idea</strong></label>
+    <textarea id="listen-main" placeholder="Write the main idea of the audio."></textarea>
+    <label><strong>Key details</strong></label>
+    <textarea id="listen-details" placeholder="Write 3–5 important details."></textarea>
+    <label><strong>Speaker purpose / attitude</strong></label>
+    <textarea id="listen-purpose" placeholder="What is the speaker trying to do? What is their attitude?"></textarea>
+  </section>
+</section>
+
+<section class="module" id="writing">
+  <section class="overview"><h2>TOEFL Writing Section</h2><p>Write one integrated response and one academic discussion response.</p></section>
+  <section class="passage-card">
+    <span class="eyebrow">Integrated Writing</span>
+    <h2>University Lecture Recordings</h2>
+    <p><strong>Reading:</strong> The university plans to record all lectures and make them available online. The administration says recordings will help absent students, support review before exams, and make learning more flexible.</p>
+    <p><strong>Listening notes:</strong> A student disagrees. He says students may stop attending class, recordings may not capture class discussion well, and some professors may feel uncomfortable being recorded.</p>
+    <p><strong>Task:</strong> Summarize the student’s points and explain how they challenge the reading.</p>
+    <textarea id="w1" placeholder="Write your integrated writing response here..."></textarea>
+    <p class="word-count">Words: <span id="w1-count">0</span></p>
+  </section>
+  <section class="passage-card">
+    <span class="eyebrow">Academic Discussion</span>
+    <h2>Study Habits</h2>
+    <p><strong>Professor:</strong> Some students prefer studying alone, while others prefer studying with classmates. Which method do you think is more effective, and why?</p>
+    <textarea id="w2" placeholder="Write your academic discussion response here..."></textarea>
+    <p class="word-count">Words: <span id="w2-count">0</span></p>
+  </section>
+</section>
+
+<section class="module" id="speaking">
+  <section class="overview"><h2>TOEFL Speaking Section</h2><p>Use these prompts for timed speaking practice.</p></section>
+  <div class="speaking-grid">
+    <section class="speaking-card"><span class="eyebrow">Task 1</span><h2>Independent</h2><p>Do you prefer learning by watching videos or by reading books? Use reasons and examples.</p><p><strong>Preparation:</strong> 15 sec · <strong>Response:</strong> 45 sec</p></section>
+    <section class="speaking-card"><span class="eyebrow">Task 2</span><h2>Campus Situation</h2><p>The university wants to extend library hours during exam week. A student supports the change because students need quiet study space and group rooms at night. Summarize the student’s opinion.</p></section>
+    <section class="speaking-card"><span class="eyebrow">Task 3</span><h2>Academic Concept</h2><p>Explain the concept of camouflage and describe one example of how an animal uses it.</p></section>
+    <section class="speaking-card"><span class="eyebrow">Task 4</span><h2>Academic Lecture</h2><p>Summarize a lecture about wetlands. Explain two environmental benefits mentioned in the passage.</p></section>
+  </div>
+</section>
+
+<p class="footer-note">Practice resource created for ESL CONNECT. This is not an official ETS TOEFL test.</p>
+</main>
+</div>
+
+</div>
+<script>
+
+const loginGate = document.getElementById('login-gate');
+const testShell = document.getElementById('test-shell');
+const loginForm = document.getElementById('email-login-form');
+const emailInput = document.getElementById('student-email');
+const loginError = document.getElementById('login-error');
+const studentChip = document.getElementById('student-chip');
+const logoutBtn = document.getElementById('logout-btn');
+
+function validEmail(value){
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value || '').trim());
+}
+function unlockTest(email){
+  localStorage.setItem('toeflStudentEmail', email);
+  loginGate.style.display = 'none';
+  testShell.classList.remove('is-locked');
+  studentChip.textContent = email;
+  studentChip.style.display = 'inline-flex';
+  logoutBtn.style.display = 'inline-flex';
+}
+const savedEmail = localStorage.getItem('toeflStudentEmail');
+if(savedEmail && validEmail(savedEmail)){
+  unlockTest(savedEmail);
+}
+loginForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const email = emailInput.value.trim();
+  if(!validEmail(email)){
+    loginError.textContent = 'Please enter a valid email address.';
+    emailInput.focus();
+    return;
+  }
+  loginError.textContent = '';
+  unlockTest(email);
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+logoutBtn.addEventListener('click', () => {
+  localStorage.removeItem('toeflStudentEmail');
+  testShell.classList.add('is-locked');
+  loginGate.style.display = 'flex';
+  studentChip.style.display = 'none';
+  logoutBtn.style.display = 'none';
+  emailInput.value = '';
+  emailInput.focus();
+});
+
+const ANSWERS = {"r1": "B", "r2": "C", "r3": "D", "r4": "A", "r5": "C", "r6": "D", "r7": "B", "r8": "A", "l1": "B", "l2": "C", "l3": "A", "l4": "B", "l5": "D", "l6": "A"};
+const root=document.documentElement;
+const themeBtn=document.querySelector('[data-theme-toggle]');
+let theme=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+root.setAttribute('data-theme',theme);
+themeBtn.addEventListener('click',()=>{theme=theme==='dark'?'light':'dark';root.setAttribute('data-theme',theme);});
+document.querySelectorAll('.tab').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.module').forEach(m=>m.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.module).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});});});
+function markQuestion(qid){const correct=ANSWERS[qid];const inputs=document.querySelectorAll(`input[name="${qid}"]`);let ok=false;inputs.forEach(input=>{const lab=input.closest('.option');lab.classList.remove('correct','incorrect');if(input.value===correct)lab.classList.add('correct');if(input.checked&&input.value!==correct)lab.classList.add('incorrect');if(input.checked&&input.value===correct)ok=true;});return ok;}
+function checkSection(prefix,total,scoreId){let score=0;for(let i=1;i<=total;i++){if(markQuestion(prefix+i))score++;}document.getElementById(scoreId).textContent=`${score} / ${total}`;document.querySelectorAll('.student-result-email').forEach(el=>el.textContent=localStorage.getItem('toeflStudentEmail')||'');}
+function clearSection(prefix,total,scoreId){for(let i=1;i<=total;i++){document.querySelectorAll(`input[name="${prefix+i}"]`).forEach(input=>{input.checked=false;input.closest('.option').classList.remove('correct','incorrect');});}document.getElementById(scoreId).textContent=`0 / ${total}`;}
+function countWords(t){return(t.trim().match(/\b[\w'-]+\b/g)||[]).length;}
+['w1','w2'].forEach(id=>{const el=document.getElementById(id),out=document.getElementById(id+'-count');el.addEventListener('input',()=>out.textContent=countWords(el.value));});
+</script>
+</body>
+</html>
