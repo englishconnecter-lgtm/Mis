@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ESL CONNECT | B2–C1 Phrasal Verb Quiz</title>
+<style>
+:root{
+  --blue:#0b2f5b;
+  --blue2:#123f73;
+  --yellow:#fff9c4;
+  --gold:#f4d35e;
+  --bg:#f4f7fb;
+  --card:#ffffff;
+  --ink:#1f2937;
+  --muted:#5f6b7a;
+  --green:#1f8a5b;
+  --red:#b42318;
+  --line:#d9e2ef;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+header{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white;padding:20px 22px 24px;border-bottom:6px solid var(--gold)}
+.header-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:94px 1fr;gap:18px;align-items:center}
+.logo{width:88px;height:88px;background:white;border:3px solid var(--yellow);border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--blue);font-weight:800;font-size:14px;line-height:1.05;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.18)}
+h1{margin:0;font-size:32px}
+.subtitle{margin:6px 0 0;color:#e8eef8;font-size:16px}
+.level{display:inline-block;background:var(--yellow);color:var(--blue);font-weight:700;border-radius:999px;padding:4px 12px;margin-top:10px}
+.wrap{max-width:1160px;margin:22px auto;padding:0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;margin-top:18px;padding:24px;box-shadow:0 8px 24px rgba(11,47,91,.08)}
+h2{color:var(--blue);margin:0 0 8px;font-size:26px}
+h3{color:var(--blue2);margin:22px 0 8px;font-size:20px}
+.instructions{background:#fffdf0;border-left:5px solid var(--gold);padding:14px;border-radius:12px;margin:14px 0}
+.toolbar{position:sticky;top:0;z-index:5;background:white;border:1px solid var(--line);border-radius:14px;padding:12px;margin:18px 0;display:flex;gap:10px;flex-wrap:wrap;align-items:center;box-shadow:0 5px 18px rgba(11,47,91,.08)}
+button{border:0;background:var(--blue);color:white;border-radius:10px;padding:10px 14px;font-weight:800;cursor:pointer}
+button:hover{background:var(--gold);color:var(--blue)}
+.score{font-weight:800;color:var(--blue);margin-left:auto}
+.quiz-grid{display:grid;grid-template-columns:1fr;gap:16px}
+.q{background:white;border:1px solid var(--line);border-radius:16px;padding:16px}
+.q.correct{border-color:var(--green);background:#f2fbf6}
+.q.incorrect{border-color:var(--red);background:#fff7f7}
+.q-head{display:flex;gap:10px;align-items:flex-start}
+.q-num{background:var(--blue);color:white;min-width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800}
+.sentence{font-size:17px;margin:3px 0 12px;flex:1}
+.drop{
+  display:inline-flex;align-items:center;justify-content:center;min-width:170px;min-height:38px;
+  padding:5px 12px;border:2px dashed #9fb0c7;border-radius:10px;background:#f8fbff;
+  font-weight:800;color:var(--blue);vertical-align:middle;margin:0 4px;
+}
+.drop.over{background:#fff9c4;border-color:var(--gold)}
+.drop.filled{border-style:solid;background:#eef5ff}
+.drop.correct{border-color:var(--green);background:#e8f7ee;color:#145c3d}
+.drop.incorrect{border-color:var(--red);background:#fff1f1;color:#7a1b12}
+.options{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.option{
+  display:inline-flex;align-items:center;justify-content:center;
+  background:#fffdf0;border:1px solid #e4d989;color:var(--blue);
+  border-radius:999px;padding:8px 12px;font-weight:800;cursor:grab;user-select:none;
+}
+.option:active{cursor:grabbing}
+.option.used{opacity:.35;pointer-events:none}
+.option.correct{background:#e8f7ee;border-color:var(--green);color:#145c3d}
+.option.wrong{background:#fff1f1;border-color:var(--red);color:#7a1b12}
+.feedback{font-weight:800;margin-top:10px;min-height:22px}
+.feedback.ok{color:var(--green)}
+.feedback.bad{color:var(--red)}
+.answer-note{display:none;background:#eef7f2;border-left:5px solid var(--green);padding:12px 14px;border-radius:10px;margin-top:8px;line-height:1.55}
+.answer-note.show{display:block}
+.brief-definition{font-weight:600;color:#35506b}
+.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-top:14px}
+.legend div{background:#f8fbff;border:1px solid var(--line);border-radius:12px;padding:12px}
+.footer{margin:26px auto 0;padding:18px 20px;text-align:center;background:#0b2f5b;color:#fff;border-top:5px solid #f4d35e}
+.footer a{color:#f4d35e;font-weight:700;text-decoration:none}
+@media(max-width:760px){
+  .header-inner{grid-template-columns:1fr}
+  h1{font-size:26px}
+  .score{margin-left:0;width:100%}
+  .drop{min-width:135px}
+  .sentence{font-size:16px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a class="logo" href="https://www.eslconnect.net/" target="_blank" rel="noopener">ESL<br/>CONNECT</a>
+    <div>
+      <h1>B2–C1 Phrasal Verb Quiz</h1>
+      <p class="subtitle">A 40-question interactive gap-fill quiz with drag-and-drop phrasal verbs.</p>
+      <span class="level">B2–C1 Vocabulary · Phrasal Verbs · Drag & Drop</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="card">
+    <h2>Instructions</h2>
+    <div class="instructions">
+      Drag the correct phrasal verb into each gap. Each question has four options, but only one answer is correct.
+      Use the <strong>Check answers</strong> button to see your total score, or click <strong>Show answers</strong> if you want to review.
+    </div>
+    <div class="legend">
+      <div><strong>Tip 1</strong><br>Think about meaning and grammar after the gap.</div>
+      <div><strong>Tip 2</strong><br>Some options are close in meaning, so read the full sentence carefully.</div>
+      <div><strong>Tip 3</strong><br>At B2–C1 level, many phrasal verbs are idiomatic or business-related.</div>
+    </div>
+  </section>
+
+  <div class="toolbar">
+    <button onclick="checkAll()">Check answers</button>
+    <button onclick="showAnswers()">Show answers</button>
+    <button onclick="resetQuiz()">Reset quiz</button>
+    <span id="score" class="score">Score: 0 / 40</span>
+  </div>
+
+  <section class="card">
+    <h2>Gap-fill quiz</h2>
+    <div id="quiz" class="quiz-grid"></div>
+  </section>
+</div>
+
+<footer class="footer">ESL Connect - <a href="mailto:englishconnecter@gmail.com">Contact Us</a></footer>
+
+<script>
+const questions = [
+  {
+    sentence: "The manager decided to ___ the meeting until Friday because several people were unavailable.",
+    answer: "put off",
+    briefDefinition: "postpone or delay",
+    options: ["look into","put off","bring up","carry out"],
+    note: "put off = postpone",
+    definition: "to postpone or delay something until a later time",
+    examples: ["We put off the trip because of the rain.", "Don’t put off your application until the last minute."]
+  },
+  {
+    sentence: "During the discussion, Anna ___ an issue that nobody had considered before.",
+    answer: "brought up",
+    briefDefinition: "mentioned a topic",
+    options: ["turned down","set off","brought up","gave in"],
+    note: "bring up = mention a topic",
+    definition: "to mention a topic or introduce it into a conversation",
+    examples: ["She brought up the budget problem in the meeting.", "He brought up an interesting point."]
+  },
+  {
+    sentence: "The company will ___ a full investigation into the data breach.",
+    answer: "carry out",
+    briefDefinition: "do or complete a task",
+    options: ["run out of","carry out","take after","come across"],
+    note: "carry out = perform or conduct",
+    definition: "to do, perform, or complete a task, plan, or investigation",
+    examples: ["The researchers carried out a detailed study.", "The team carried out the plan successfully."]
+  },
+  {
+    sentence: "We need to ___ the complaint before we reply to the customer.",
+    answer: "look into",
+    briefDefinition: "investigate",
+    options: ["cut down on","get away with","look into","put up with"],
+    note: "look into = investigate",
+    definition: "to investigate or examine something in order to understand it",
+    examples: ["The police are looking into the case.", "I’ll look into the problem and call you back."]
+  },
+  {
+    sentence: "The candidate ___ the job offer because the salary was too low.",
+    answer: "turned down",
+    briefDefinition: "refused or rejected",
+    options: ["dropped by","came up with","turned down","took on"],
+    note: "turn down = reject",
+    definition: "to refuse or reject an offer, request, invitation, or proposal",
+    examples: ["She turned down the invitation.", "He turned down a better-paid job abroad."]
+  },
+  {
+    sentence: "The marketing team ___ a creative solution to attract younger customers.",
+    answer: "came up with",
+    briefDefinition: "created or thought of",
+    options: ["looked down on","called off","came up with","fell behind"],
+    note: "come up with = produce an idea",
+    definition: "to think of, create, or produce an idea, plan, or solution",
+    examples: ["They came up with a new marketing idea.", "Can you come up with a better solution?"]
+  },
+  {
+    sentence: "The event was ___ because of the storm.",
+    answer: "called off",
+    briefDefinition: "cancelled",
+    options: ["kept up with","looked up to","called off","set up"],
+    note: "call off = cancel",
+    definition: "to cancel an event, arrangement, or plan",
+    examples: ["The match was called off because of heavy snow.", "They called off the strike after negotiations."]
+  },
+  {
+    sentence: "She has ___ a lot of responsibility since her colleague resigned.",
+    answer: "taken on",
+    briefDefinition: "accepted responsibility",
+    options: ["given away","taken on","gone over","broken into"],
+    note: "take on = accept responsibility or work",
+    definition: "to accept responsibility, work, a role, or a challenge",
+    examples: ["She has taken on three new clients.", "The job is too much to take on alone."]
+  },
+  {
+    sentence: "We have ___ milk, so I’ll go to the shop.",
+    answer: "run out of",
+    briefDefinition: "have none left",
+    options: ["get over","run out of","come down with","pull through"],
+    note: "run out of = have none left",
+    definition: "to have no more of something left",
+    examples: ["We’ve run out of printer paper.", "They ran out of time during the exam."]
+  },
+  {
+    sentence: "I ___ an old school friend while I was waiting at the station.",
+    answer: "came across",
+    briefDefinition: "found or met by chance",
+    options: ["put forward","held back","came across","wore out"],
+    note: "come across = find or meet by chance",
+    definition: "to find or meet someone or something by chance",
+    examples: ["I came across this article online.", "She came across as confident and professional."]
+  },
+  {
+    sentence: "The new manager wants to ___ a more flexible working policy.",
+    answer: "bring in",
+    briefDefinition: "introduce",
+    options: ["turn up","bring in","look after","break down"],
+    note: "bring in = introduce",
+    definition: "to introduce a new rule, system, product, or person",
+    examples: ["The school brought in new rules.", "The company brought in an outside consultant."]
+  },
+  {
+    sentence: "The printer has ___ again; can you call IT?",
+    answer: "broken down",
+    briefDefinition: "stopped working",
+    options: ["gone ahead","taken off","broken down","backed up"],
+    note: "break down = stop working",
+    definition: "to stop working, especially for a machine, vehicle, or system",
+    examples: ["My car broke down on the motorway.", "Communication broke down between the two departments."]
+  },
+  {
+    sentence: "After weeks of negotiation, both sides finally ___ and accepted a compromise.",
+    answer: "gave in",
+    briefDefinition: "stopped resisting",
+    options: ["looked over","set aside","filled in","gave in"],
+    note: "give in = stop resisting",
+    definition: "to stop resisting, arguing, or refusing and accept something",
+    examples: ["After hours of arguing, he finally gave in.", "The company gave in to pressure from customers."]
+  },
+  {
+    sentence: "We need to ___ the proposal carefully before sending it to the client.",
+    answer: "go over",
+    briefDefinition: "review carefully",
+    options: ["get by","go over","pick on","turn into"],
+    note: "go over = review",
+    definition: "to review, check, or examine something carefully",
+    examples: ["Let’s go over the figures again.", "The teacher went over the answers with the class."]
+  },
+  {
+    sentence: "The project will ___ as planned despite the budget cuts.",
+    answer: "go ahead",
+    briefDefinition: "proceed",
+    options: ["look back","fall out","go ahead","take apart"],
+    note: "go ahead = proceed",
+    definition: "to proceed or continue with a plan or activity",
+    examples: ["The launch will go ahead next month.", "They decided to go ahead with the project."]
+  },
+  {
+    sentence: "He was exhausted after the conference because networking for three days really ___ him ___.",
+    answer: "wore out",
+    briefDefinition: "made very tired",
+    options: ["put across","wore out","made up","saw off"],
+    note: "wear out = make very tired",
+    definition: "to make someone extremely tired",
+    examples: ["The long journey wore me out.", "Looking after three children all day wore her out."]
+  },
+  {
+    sentence: "She tried to ___ her point clearly, but the audience misunderstood her.",
+    answer: "put across",
+    briefDefinition: "communicate clearly",
+    options: ["get around","turn away","put across","bring about"],
+    note: "put across = communicate an idea",
+    definition: "to communicate or express an idea clearly",
+    examples: ["He put his ideas across very clearly.", "The advert puts across a strong message."]
+  },
+  {
+    sentence: "The new law could ___ major changes in the education system.",
+    answer: "bring about",
+    briefDefinition: "cause to happen",
+    options: ["drop off","bring about","get at","look up"],
+    note: "bring about = cause to happen",
+    definition: "to cause something to happen",
+    examples: ["The policy brought about major changes.", "Technology has brought about new ways of working."]
+  },
+  {
+    sentence: "The team is struggling to ___ the workload this month.",
+    answer: "keep up with",
+    briefDefinition: "stay at the same level",
+    options: ["take over","look down on","come down to","keep up with"],
+    note: "keep up with = stay at the same level or speed",
+    definition: "to stay at the same level, speed, or standard as someone or something",
+    examples: ["I can’t keep up with all these emails.", "She works hard to keep up with the course."]
+  },
+  {
+    sentence: "If we don’t act quickly, we’ll ___ schedule.",
+    answer: "fall behind",
+    briefDefinition: "fail to keep up",
+    options: ["give off","set up","fall behind","come round"],
+    note: "fall behind = be late or delayed",
+    definition: "to fail to keep up with progress, work, or a schedule",
+    examples: ["He fell behind with his homework.", "The project fell behind schedule."]
+  },
+  {
+    sentence: "The CEO will ___ the main points at the end of the presentation.",
+    answer: "sum up",
+    briefDefinition: "summarise",
+    options: ["run into","sum up","get over","put aside"],
+    note: "sum up = summarise",
+    definition: "to summarise the main points of something",
+    examples: ["To sum up, we need more time and money.", "She summed up the argument in one sentence."]
+  },
+  {
+    sentence: "It took her months to ___ the disappointment of losing the promotion.",
+    answer: "get over",
+    briefDefinition: "recover from",
+    options: ["turn out","look after","get over","carry on"],
+    note: "get over = recover from",
+    definition: "to recover from an illness, problem, shock, or disappointment",
+    examples: ["It took him weeks to get over the flu.", "She never really got over the shock."]
+  },
+  {
+    sentence: "The product launch ___ to be more successful than expected.",
+    answer: "turned out",
+    briefDefinition: "had a final result",
+    options: ["gave up","turned out","broke out","took in"],
+    note: "turn out = have a final result",
+    definition: "to have a particular result in the end",
+    examples: ["The film turned out to be excellent.", "Everything turned out well in the end."]
+  },
+  {
+    sentence: "The company was ___ by a larger international group.",
+    answer: "taken over",
+    briefDefinition: "gained control",
+    options: ["looked into","taken over","come across","put off"],
+    note: "take over = gain control of a company",
+    definition: "to gain control of a company, role, place, or responsibility",
+    examples: ["The company was taken over last year.", "AI is taking over many routine tasks."]
+  },
+  {
+    sentence: "We should ___ some money for unexpected costs.",
+    answer: "set aside",
+    briefDefinition: "reserve for later",
+    options: ["look up to","set aside","come down with","break into"],
+    note: "set aside = reserve for a purpose",
+    definition: "to reserve something, especially time or money, for a particular purpose",
+    examples: ["Set aside ten minutes for revision.", "They set aside money for emergencies."]
+  },
+  {
+    sentence: "He ___ smoking when his doctor warned him about his health.",
+    answer: "gave up",
+    briefDefinition: "stopped doing",
+    options: ["gave off","gave away","gave up","gave in"],
+    note: "give up = stop doing something",
+    definition: "to stop doing something, especially a habit or regular activity",
+    examples: ["He gave up sugar for a month.", "Don’t give up when it gets difficult."]
+  },
+  {
+    sentence: "The charity ___ thousands of meals to families in need.",
+    answer: "gave away",
+    briefDefinition: "gave for free or revealed",
+    options: ["put forward","ran into","gave away","turned down"],
+    note: "give away = give for free",
+    definition: "to give something for free",
+    examples: ["They gave away free samples.", "His expression gave away the answer."]
+  },
+  {
+    sentence: "The committee ___ a new plan to improve staff training.",
+    answer: "put forward",
+    briefDefinition: "suggested formally",
+    options: ["came across","cut back on","looked after","put forward"],
+    note: "put forward = suggest formally",
+    definition: "to suggest an idea, plan, or proposal for consideration",
+    examples: ["She put forward a convincing argument.", "Several proposals were put forward."]
+  },
+  {
+    sentence: "Because of rising costs, we need to ___ unnecessary spending.",
+    answer: "cut back on",
+    briefDefinition: "reduced",
+    options: ["get away with","cut back on","look into","bring up"],
+    note: "cut back on = reduce",
+    definition: "to reduce the amount of something",
+    examples: ["We need to cut back on expenses.", "He’s trying to cut back on coffee."]
+  },
+  {
+    sentence: "He can’t ___ arriving late every day; sooner or later there will be consequences.",
+    answer: "get away with",
+    briefDefinition: "avoid punishment",
+    options: ["come up with","put up with","go through","get away with"],
+    note: "get away with = avoid punishment",
+    definition: "to avoid punishment or negative consequences for something",
+    examples: ["He got away with cheating once, but not twice.", "You can’t get away with being late every day."]
+  },
+  {
+    sentence: "I don’t know how she ___ the noise from the construction site every morning.",
+    answer: "puts up with",
+    briefDefinition: "tolerates",
+    options: ["takes after","breaks into","puts up with","turns out"],
+    note: "put up with = tolerate",
+    definition: "to tolerate something unpleasant or annoying",
+    examples: ["She puts up with a lot of noise.", "I don’t know how he puts up with that behaviour."]
+  },
+  {
+    sentence: "The report ___ several weaknesses in the current system.",
+    answer: "points out",
+    briefDefinition: "draws attention to",
+    options: ["drops off","points out","looks up","fills in"],
+    note: "point out = draw attention to",
+    definition: "to draw attention to a fact, problem, or detail",
+    examples: ["The article points out several risks.", "She pointed out a mistake in the report."]
+  },
+  {
+    sentence: "Could you ___ this form and send it back by Monday?",
+    answer: "fill in",
+    briefDefinition: "complete a form",
+    options: ["take in","set off","fill in","bring about"],
+    note: "fill in = complete a form",
+    definition: "to complete a form or document by writing information",
+    examples: ["Please fill in your name and address.", "I had to fill in three forms."]
+  },
+  {
+    sentence: "The plane ___ two hours late because of technical problems.",
+    answer: "took off",
+    briefDefinition: "left the ground",
+    options: ["went over","took off","turned up","broke out"],
+    note: "take off = leave the ground",
+    definition: "to leave the ground, especially for an aircraft",
+    examples: ["The plane took off at 8 a.m.", "Her career took off after the interview."]
+  },
+  {
+    sentence: "Several guests didn’t ___ until after dinner had started.",
+    answer: "turn up",
+    briefDefinition: "arrive or appear",
+    options: ["give in","turn up","cut down on","look over"],
+    note: "turn up = arrive",
+    definition: "to arrive or appear",
+    examples: ["He turned up late to the meeting.", "My keys turned up under the sofa."]
+  },
+  {
+    sentence: "The police are trying to ___ who leaked the confidential documents.",
+    answer: "find out",
+    briefDefinition: "discover information",
+    options: ["run out of","hold back","bring in","find out"],
+    note: "find out = discover information",
+    definition: "to discover information",
+    examples: ["I need to find out the truth.", "Did you find out who called?"]
+  },
+  {
+    sentence: "She didn’t want to ___ any information during the interview.",
+    answer: "give away",
+    options: ["come down with","give away","take after","look up to"],
+    note: "give away = reveal",
+    definition: "to reveal information, sometimes unintentionally"
+  },
+  {
+    sentence: "The speaker ___ the importance of listening before responding.",
+    answer: "pointed out",
+    briefDefinition: "drew attention to",
+    options: ["set up","stressed out","pointed out","picked out"],
+    note: "point out = draw attention to",
+    definition: "to draw attention to a fact, problem, or detail",
+    examples: ["She pointed out the main problem.", "The teacher pointed out my mistake."]
+  },
+  {
+    sentence: "The workshop was designed to help employees ___ conflict more constructively.",
+    answer: "deal with",
+    briefDefinition: "handle or manage",
+    options: ["fall through","get by","deal with","drop out"],
+    note: "deal with = handle a situation",
+    definition: "to handle, manage, or take action about a situation",
+    examples: ["We need to deal with this complaint quickly.", "He deals with difficult customers every day."]
+  },
+  {
+    sentence: "The plan ___ at the last minute because the client changed their mind.",
+    answer: "fell through",
+    briefDefinition: "failed to happen",
+    options: ["carried out","looked into","fell through","took on"],
+    note: "fall through = fail to happen",
+    definition: "to fail to happen or not be completed as planned",
+    examples: ["The deal fell through at the last minute.", "Our holiday plans fell through."]
+  }
+];
+const quiz = document.getElementById("quiz");
+
+function renderQuiz(){
+  quiz.innerHTML = "";
+  questions.forEach((q, index) => {
+    const div = document.createElement("div");
+    div.className = "q";
+    div.dataset.answer = q.answer;
+    div.dataset.index = index;
+
+    const sentenceHtml = q.sentence.replace("___", `<span class="drop" data-index="${index}" aria-label="Drop answer here">Drop here</span>`);
+
+    div.innerHTML = `
+      <div class="q-head">
+        <div class="q-num">${index + 1}</div>
+        <div class="sentence">${sentenceHtml}</div>
+      </div>
+      <div class="options">
+        ${q.options.map(opt => `<span class="option" draggable="true" data-value="${escapeHtml(opt)}">${escapeHtml(opt)}</span>`).join("")}
+      </div>
+      <div class="feedback"></div>
+      <div class="answer-note">
+        <div><strong>Answer:</strong> ${escapeHtml(q.answer)} <span class="brief-definition">— ${escapeHtml(q.briefDefinition || "")}</span></div>
+      </div>
+    `;
+    quiz.appendChild(div);
+  });
+  enableDragDrop();
+  updateScore();
+}
+
+function escapeHtml(str){
+  return String(str).replace(/[&<>"']/g, s => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+  }[s]));
+}
+
+let dragged = null;
+
+function enableDragDrop(){
+  document.querySelectorAll(".option").forEach(opt => {
+    opt.addEventListener("dragstart", e => {
+      dragged = opt;
+      e.dataTransfer.setData("text/plain", opt.dataset.value);
+    });
+
+    opt.addEventListener("click", () => {
+      const q = opt.closest(".q");
+      const drop = q.querySelector(".drop");
+      placeAnswer(drop, opt);
+    });
+  });
+
+  document.querySelectorAll(".drop").forEach(drop => {
+    drop.addEventListener("dragover", e => {
+      e.preventDefault();
+      drop.classList.add("over");
+    });
+    drop.addEventListener("dragleave", () => drop.classList.remove("over"));
+    drop.addEventListener("drop", e => {
+      e.preventDefault();
+      drop.classList.remove("over");
+      if(dragged) placeAnswer(drop, dragged);
+    });
+  });
+}
+
+function placeAnswer(drop, option){
+  const q = drop.closest(".q");
+  q.querySelectorAll(".option").forEach(o => {
+    if(o.dataset.value === drop.dataset.value) o.classList.remove("used");
+  });
+
+  drop.textContent = option.dataset.value;
+  drop.dataset.value = option.dataset.value;
+  drop.classList.add("filled");
+  drop.classList.remove("correct","incorrect");
+  q.classList.remove("correct","incorrect");
+  q.querySelector(".feedback").textContent = "";
+  q.querySelector(".feedback").className = "feedback";
+  const existingNote = q.querySelector(".answer-note");
+  if(existingNote) existingNote.classList.remove("show");
+
+  q.querySelectorAll(".option").forEach(o => o.classList.remove("correct","wrong"));
+  option.classList.add("used");
+
+  // Instant feedback
+  const correct = q.dataset.answer;
+  const answerNote = q.querySelector(".answer-note");
+
+  if(option.dataset.value === correct){
+    drop.classList.add("correct");
+    q.classList.add("correct");
+    option.classList.add("correct");
+    if(answerNote) answerNote.classList.add("show");
+    q.querySelector(".feedback").textContent = "Correct.";
+    q.querySelector(".feedback").className = "feedback ok";
+  } else {
+    drop.classList.add("incorrect");
+    q.classList.add("incorrect");
+    option.classList.add("wrong");
+    if(answerNote) answerNote.classList.remove("show");
+    q.querySelector(".feedback").textContent = "Not quite. Try another option.";
+    q.querySelector(".feedback").className = "feedback bad";
+  }
+
+  updateScore();
+}
+
+function checkAll(){
+  let score = 0;
+  document.querySelectorAll(".q").forEach(q => {
+    const drop = q.querySelector(".drop");
+    const answer = q.dataset.answer;
+    const value = drop.dataset.value || "";
+    drop.classList.remove("correct","incorrect");
+    q.classList.remove("correct","incorrect");
+
+    if(value === answer){
+      score++;
+      drop.classList.add("correct");
+      q.classList.add("correct");
+      q.querySelector(".feedback").textContent = "Correct.";
+      q.querySelector(".feedback").className = "feedback ok";
+    } else {
+      drop.classList.add("incorrect");
+      q.classList.add("incorrect");
+      q.querySelector(".feedback").textContent = value ? "Incorrect. Try again." : "No answer selected.";
+      q.querySelector(".feedback").className = "feedback bad";
+    }
+  });
+  document.getElementById("score").textContent = `Score: ${score} / ${questions.length}`;
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function updateScore(){
+  let score = 0;
+  document.querySelectorAll(".q").forEach(q => {
+    const drop = q.querySelector(".drop");
+    if((drop.dataset.value || "") === q.dataset.answer) score++;
+  });
+  document.getElementById("score").textContent = `Score: ${score} / ${questions.length}`;
+}
+
+function showAnswers(){
+  document.querySelectorAll(".q").forEach(q => {
+    const answer = q.dataset.answer;
+    const drop = q.querySelector(".drop");
+    drop.textContent = answer;
+    drop.dataset.value = answer;
+    drop.classList.add("filled","correct");
+    drop.classList.remove("incorrect");
+    q.classList.add("correct");
+    q.classList.remove("incorrect");
+    q.querySelector(".answer-note").classList.add("show");
+    q.querySelector(".feedback").textContent = "Correct answer shown.";
+    q.querySelector(".feedback").className = "feedback ok";
+  });
+  updateScore();
+}
+
+function resetQuiz(){
+  renderQuiz();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+renderQuiz();
+</script>
+</body>
+</html>
