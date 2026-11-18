@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#102f5a">
+<title>ESL Connect · Phrasal Verb Quest</title>
+<style>
+:root{--navy:#102f5a;--blue:#2877dc;--sky:#eaf4ff;--yellow:#f8d449;--white:#fff;--ink:#173453;--muted:#647a95;--line:#d9e7f4;--green:#157a57;--red:#b8374b}
+*{box-sizing:border-box}body{margin:0;background:#f5f9fd;color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid #e9b80d;outline-offset:3px}
+.wrap{max-width:1080px;margin:auto;padding:24px 24px 70px}
+header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--navy);font-weight:900;font-size:19px}
+.brand img{width:60px;height:60px;border-radius:15px;object-fit:cover}
+.stats{display:flex;gap:10px;flex-wrap:wrap}
+.stat{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 13px;font-weight:800;font-size:14px;box-shadow:0 3px 0 #e9f0f7}
+.hero{background:linear-gradient(120deg,#102f5a 0%,#286fc4 78%,#3a91e6 100%);border-radius:28px;color:#fff;padding:36px;position:relative;overflow:hidden;box-shadow:0 10px 0 #dcebf9}
+.hero:after{content:"";position:absolute;right:-70px;top:-95px;width:310px;height:310px;border:46px solid #ffffff12;border-radius:50%;pointer-events:none}
+.eyebrow{display:inline-flex;gap:8px;align-items:center;background:#ffffff24;border:1px solid #ffffff44;padding:5px 12px;border-radius:30px;font-size:12px;font-weight:800;letter-spacing:.07em;text-transform:uppercase}
+.hero h1{font-size:clamp(32px,5vw,49px);letter-spacing:-.035em;line-height:1.1;margin:16px 0 12px;max-width:680px}
+.hero p{margin:0;max-width:670px;color:#eaf4ff;font-size:16px}
+.hero-bottom{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:24px}
+.hero-chips{display:flex;gap:8px;flex-wrap:wrap}.hero-chip{border:1px solid #ffffff50;background:#ffffff17;border-radius:999px;padding:6px 11px;font-weight:700;font-size:13px}
+.action{border:0;border-radius:14px;background:var(--yellow);color:var(--navy);padding:13px 20px;font-weight:900;box-shadow:0 4px 0 #b78d1c;transition:transform .15s}
+.action:hover{transform:translateY(-2px)}.action.secondary{background:#fff;box-shadow:0 4px 0 #dce8f3;border:1px solid var(--line)}.action:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.section-head{margin:36px 0 16px;display:flex;align-items:center;justify-content:space-between;gap:16px}.section-head h2{margin:0;font-size:22px}.subtle{color:var(--muted);font-size:14px}
+.levels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.level-card{background:#fff;border:2px solid var(--line);border-radius:22px;padding:22px;text-align:left;box-shadow:0 5px 0 #e5eef7;transition:transform .15s,border-color .15s;display:flex;flex-direction:column;min-height:212px}
+.level-card:hover{transform:translateY(-3px);border-color:#86b9f0}
+.level-top{display:flex;justify-content:space-between;align-items:center}.level-badge{width:56px;height:56px;border-radius:16px;background:#e6f2ff;color:var(--navy);display:grid;place-items:center;font-size:23px;font-weight:950}
+.level-card[data-level="A2"] .level-badge{background:#d7eeff}.level-card[data-level="B1"] .level-badge{background:#bfe1ff}.level-card[data-level="B2"] .level-badge{background:#9fcbfa}.level-card[data-level="C1"] .level-badge{background:#518ed9;color:#fff}.level-card[data-level="C2"] .level-badge{background:#102f5a;color:#fff}
+.level-card h3{margin:15px 0 2px;font-size:19px}.level-card p{color:var(--muted);margin:0 0 16px;font-size:14px;flex:1}
+.level-foot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:12px;font-weight:800;font-size:13px;color:var(--blue)}
+.progress-track{height:7px;border-radius:10px;background:#e6eef7;margin-top:10px;overflow:hidden}.progress-fill{height:100%;background:var(--yellow);border-radius:10px;transition:width .3s}
+.quiz-shell{max-width:800px;margin:28px auto 0}.quiz-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.back{background:none;border:0;color:var(--navy);font-weight:800;padding:8px 0}
+.progress-meta{font-weight:800;color:var(--muted);font-size:14px}.quiz-progress{height:11px;background:#dbe9f6;border-radius:20px;overflow:hidden;margin-bottom:18px}.quiz-progress div{height:100%;background:linear-gradient(90deg,#f4c93d,#ffdf73);border-radius:20px;transition:width .25s}
+.question-card{background:#fff;border:2px solid var(--line);border-radius:24px;padding:30px;box-shadow:0 7px 0 #e3edf7}
+.question-kind{display:inline-flex;border-radius:999px;background:var(--sky);color:var(--blue);font-size:12px;font-weight:900;letter-spacing:.04em;text-transform:uppercase;padding:6px 11px}
+.question-card h2{font-size:clamp(23px,3.5vw,31px);line-height:1.25;margin:16px 0 8px;letter-spacing:-.025em}
+.question-hint{color:var(--muted);margin:0 0 22px;font-size:14px}
+.options{display:grid;gap:11px}
+.option{display:flex;gap:12px;align-items:center;text-align:left;padding:15px 16px;border:2px solid #d8e6f4;border-radius:14px;background:#fff;color:var(--ink);font-weight:700;min-height:62px;transition:background .15s,border-color .15s}
+.option:hover:not(:disabled){border-color:var(--blue);background:#f4f9ff}.option:disabled{cursor:default}
+.option-letter{display:grid;place-items:center;width:28px;height:28px;border:1px solid #bdd4ec;border-radius:9px;flex:none;color:#557a9d;font-size:12px;font-weight:900}
+.option.correct{background:#e9f8f1;border-color:#2f9b74;color:#116345}.option.wrong{background:#fff0f1;border-color:#d45b69;color:#a52e3d}
+.feedback{display:none;margin-top:19px;padding:15px 17px;border-radius:15px;font-size:14px}
+.feedback.show{display:block}.feedback.good{background:#e9f8f1;color:#116345}.feedback.bad{background:#fff0f1;color:#a52e3d}
+.feedback strong{display:block;font-size:16px;margin-bottom:4px}.feedback .example{margin-top:8px;font-style:italic}
+.quiz-actions{display:flex;justify-content:flex-end;margin-top:22px;gap:12px}
+.result{text-align:center;background:#fff;border:2px solid var(--line);border-radius:25px;padding:35px 26px;box-shadow:0 7px 0 #e3edf7}.result h2{font-size:31px;margin:10px 0}.result.perfect{background:linear-gradient(155deg,#fff 0%,#eaf4ff 100%);border-color:#77b2f0;box-shadow:0 8px 0 #d4e9ff}.well-done-icon{display:none;font-size:64px;line-height:1.2;margin:5px 0 15px}.result.perfect .well-done-icon{display:block}.result.perfect h2{font-size:clamp(32px,6vw,48px);color:var(--navy)}.result.perfect .question-kind{background:#d5eaff;color:#165a9c}.result p{color:var(--muted)}.result-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+.review{margin:26px auto 0;max-width:800px}.review h3{margin-bottom:10px}.review details{border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 14px;margin-bottom:8px}.review summary{font-weight:800;cursor:pointer}.review p{margin:6px 0;color:var(--muted);font-size:14px}
+.hidden{display:none!important}
+@media(max-width:800px){.levels{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{padding:28px}.wrap{padding:18px 15px 55px}}
+@media(max-width:520px){header{align-items:flex-start}.brand{font-size:15px}.brand img{width:48px;height:48px}.levels{grid-template-columns:1fr}.level-card{min-height:175px}.question-card{padding:21px}.hero{padding:24px}.hero-bottom{align-items:flex-start}.result-actions .action{width:100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="brand" href="https://www.eslconnect.net" target="_blank" rel="noopener noreferrer" title="Visit ESL Connect"><img alt="ESL Connect logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAmK0lEQVR4nO3daXgUZaK38X9C9oQAgbCDhE0Jq6wuCII6BgVUBoFxxR1F3HWQGRXFUdRxmVE87qI4ioigIhLBhVUWAQEhILsssgcJScje74fz4uFiRLo6VV1V/dy/65oP57Kqn6eaU3nuru6ujgoEAgIAAGaJdnsCAAAg/AgAAAAMRAAAAGAgAgAAAAMRAAAAGIgAAADAQAQAAAAGIgAAADAQAQAAgIEIAAAADEQAAABgIAIAAAADEQAAABiIAAAAwEAEAAAABiIAAAAwEAEAAICBCAAAAAxEAAAAYCACAAAAAxEAAAAYiAAAAMBABAAAAAaKcXsCXlGQkxVwew4AgPBIzsyOcnsObosKBMxb91jsAQDHMy0KjAgAFnwAgFWRHgQRHQAs/ACAyorUEIi4AGDRBwA4JZJiIGICgIUfABAukRACvg8AFn4AgFv8HAK+vg8Aiz8AwE1+Xod8eQXAz084ACAy+e1qgO+uALD4AwC8yG/rk68CwG9PLgDALH5ap3zxFoCfnlAAACTvvyXg+SsALP4AAD/y+vrl6QDw+pMHAMAf8fI65tm3ANx40pIzs8M9JAAgzApyssI+phffDvBkAIRj8WexBwAcFY4o8FoEeC4AnF78WfgBACfidAh4KQI8FQBOLf4s+gAAq5yKAa9EQIzbE3ASCz8AIFRH1xA3PjMQDp75FoDdr/5Z/AEAdrB7PfHKNwM88RaAnU8GCz8AwCl2Xg1w+60A168AsPgDAPzCznXG7SsBrgeAXVj8AQDhECnrjasBYFf9RMo/BgDAH+xad9y8CuBaALD4AwD8zO8R4Ou3AFj8AQBu8vM65EoA2FE7fn7SAQCRw471yI2rAL68AsDiDwDwEj+uS2EPgMpWjh+fZABA5Kvs+hTuqwC+vAIAAAAqx1cBwKt/AICX+WmdCmsAVObyhp+eVACAuSqzXoXzbQBfXQEAAAD2CFsA8OofAGAKP1wF4AoAAAAGIgAAADCQ5wOAy/8AAD/y+voVlgBw+zePAQDwk3Csm56+AuD1egIA4I94eR3zdAAAAABnEAAAABiIAAAAwECOBwAfAAQAwDqn10/PXgHw8gcnAAAIllfXM88GAAAAcA4BAACAgQgAAAAMRAAAAGAgAgAAAAMRAAAAGIgAAADAQAQAAAAGIgAAADAQAQAAgIEIAAAADEQAAABgIAIAAAADEQAAABiIAAAAwEAEAAAABiIAAAAwEAEAAICBCAAAAAxEAAAAYCACAAAAAxEAAAAYiAAAAMBABAAAAAYiAAAAMBABAACAgQgAAAAMRAAAAGAgAgAAAAMRAAAAGIgAAADAQAQAAAAGIgAAADAQAQAAgIEIAAAADEQAAABgIAIAAAADEQAAABiIAAAAwEAEAAAABiIAAAAwEAEAAICBCAAAAAxEAAAAYCACAAAAAxEAAAAYiAAAAMBABAAAAAYiAAAAMBABAACAgQgAAAAMRAAAAGAgAgAAAAMRAAAAGIgAAADAQAQAAAAGIgAAADAQAQAAgIEIAAAADEQAAABgIAIAAAADEQAAABiIAAAAwEAEAAAABiIAAAAwEAEAAICBCAAAAAxEAAAAYCACAAAAAxEAAAAYiAAAAMBABAAAAAYiAAAAMBABAACAgQgAAAAMRAAAAGAgAgAAAAMRAAAAGIgAAADAQAQAAAAGIgAAADAQAQAAgIEIAAAADEQAAABgIAIAAAADEQAAABiIAAAAwEAEAAAABiIAAAAwEAEAAICBCAAAAAxEAAAAYCACAAAAAxEAAAAYiAAAAMBABAAAAAYiAAAAMBABAACAgQgAAAAMRAAAAGAgAgAAAAMRAAAAGIgAAADAQAQAAAAGIgAAADAQAQAAgIEIAAAADEQAAABgIAIAAAADEQAAABiIAAAAwEAEAAAABopxewIAnFFREdCajdu1ZNVGrdu8Uxu27tLu/b9q74FDKjhSrJKSUlVUBJSQEKekhDglxscpISFO6Wmpql+7hhrUTlP92mlqUCdNpzatr2aN6yo2porbhwXAJgQAIlpZebmqd7rW7Wn8rnuu66fH7hxs62MGAgF99d2P+ij7O02fvVyHDheedJ+CwiIVFBb99n+v3/LL724XG1NFzU+pp1bNGqh1i0bq1q6FurRtpuSkBFvmXpl/q2mvjlSvbm1smQdgCgIAiACBQEDvfz5fz7zxqTb+vNuRMUrLyrV20w6t3bRDU2YuliRViY5Wm5aN1a19C13Rr7s6t2nmyNgA7EcAAD7305ZfdNPf/kfLc7aEfezyigqtXLdVK9dtVUpSAgEA+AgBAPjYlJmLNezhV1VYVOL2VAD4DAEA+NQ7U2drxJg3VVERcHsqAHyIrwECPvTVd6t0x5i3WPwBhIwAAHwm91C+bvr7KyqvqHB7KgB8jAAAfGb0vydpX26e29MA4HMEAOAjO3Yf0IRP57g9DQARgA8BAj7y3mfzVFpWHtK+VaKj1aNLps7t1lptWzZWkwbpSk9LVUJCnOJjY1VUUqrCI0XaeyBPu/Yd1Iatu/TTll/0Q84W/bh+m4pLSm0+GgBuIgAAH5k6a3FI+112QTeNuWuImjRIP+E2Sf//lsC1aqQqs3lDnXdm29/+W0lpmRYsX6dZC1Zp5vyVWrd5Z0jzAOAdBABwAl67vWzuoXzlbNxheb/br+qjsfddWamx42Jj1KtbG/Xq1kZP3HOFduw+oKmzlujdT+Zo7SbrcwLgPgIA8ImV67YqELD2tb+GdWvq8buH2D6XhnVrasTVfTTi6j5asmqjJnwyR1WTE20fB4BzCADAJ7bs2Gt5n0vO66KYKs7+gl/Xds3VtV1zR8cAYD++BQD4xN4D1r/617h+LQdmAiASEACATxwpKra8T/4xP/MLAMciAACfiI2xfin/q+9+dGAmACIBAQD4RM3qVS3vs/CHn/TuJ9w4CMB/IwAAn6hZw3oASNLtj72hkf/8j3IP5ds8IwB+RgAAPnFa0wYh7VdREdBL781Qyz+N0NCR4/Txl4uIAQB8DRDwi7YtG6tm9ao68OvhkPYvKi7V5OyFmpy9UFFRUWrRpJ66tGmm0zMzdHrrDLVteYqSEuJsnjUAryIAgBPod8tYxx5701fjVKdWNUv7REVFqWfXTE2ZGdrtgI8VCAS0fssvWr/lF/1n2jxJ//tbAac2ra/TW2WoU5um6ta+hVq3aOT4fQQAuIMAAHxk2JA/2RIAv6e8okI5G3coZ+OO36IgJTlBPTpn6oKz26lvr06ql17DkbEBhB+fAQB85KyOp+qczq3CNl5+QZG+mLNcdz8xXi3/dIcuvOFxvT9tvoqK+WVAwO8IAMBnxt53pRLiY8M+biAQ0IJl63TzQ68o86K79MI70/mJYMDHCADAZ9qf1kQvPXyjq3PYe+CQ/v78B+p46QP6ZtFqV+cCIDQEAOBDQy4+Ww/ffrnb09DPv+zTJbc+pcde+sjyLxUCcBcBAPjUAzdeotcfH6bkxHhX5xEIBPT0G59q1HPvuzoPANYQAICP/aVvdy2a9IQuOLud21PRixNm/PbtAQDeRwAAPpfRqI6mjntAX7w+Sr26tXF1LneMeUvbdu13dQ4AgkMAABGiR5dMTXt1pJZPfVr3Xt9PTRqkh30OxSWlevbNz8I+LgDrCAAgwrTMqK9H7xis1dOf1/cfj9WT916pfr06KT0tNSzjT/h0rnbtOxiWsQCEjjsBAicw7dWRrl9Sr6xWzRqqVbOGGnF1H0nSlu17tHjVRi1ZtVFLVm3Q6vXbVVZebuuYJaVl+nLeSg0dcK6tjwvAXgQAYJCMRnWU0aiOhlx8tiTpSHGJlqzcqLnf5+jrhT9q6epNtowzb+laAgDwOAIAMFhifJx6ds1Uz66Zemj4QG3ffUDvT5unVyfO0t4Dh0J+3AXL19k4SwBO4DMAAH7TqG5N/fWmS7V6+vO6cdD5IT/Orr0HuTEQ4HEEAID/kpQQpxdGDdV1A3qFtH95RYXy8o/YPCsAdiIAAJzQmLuGhPzDQ7m/HrZ5NgDsRAAAOKHqqcnq1r5FSPtW8BYA4GkEAIA/1KhurZD2S4iPs3kmAOxEAAA+kZdfqMvveFZrNmwP67j5R4pC2q9GtRSbZwLATgQA4BOBgDRj7g86c/Ao3fi3/9G6zTvDMu6qdT9b3qdWjVQlJXAFAPAyAgDwmYqKgCZOX6Aufx6pwXc9pwXLnPvO/awFq7R5+x7L+7XMqOfAbADYiRsBAT4VCAQ0ffZyTZ+9XKc1baAbBvbWwKwzbbvn/5bte3Tb6NdD2rdr2+a2zAGAcwgA4AT63TLW8THGjx2ugVlnVvpx1m3eqfufnqCR//yPzunSSv17d1bvM9qq+Sl1LT9WWXm5Pvh8gUY9974OHsoPaT69zgjvbyj46d8K8AoCAIgg5RUVmr14jWYvXiNJalAnTZ3aNFP7005Rq6YN1LBeLdWvXUNVkxKUmBCvktIyFRYV65c9uVq/dZfmL1un6bOXaeee3JDnkFYtRT27Ztp1SAAcQgAAEWznnlzt3JOrz77+PmxjXj+wt2KqVAnbeABCw4cAAdgmJTlBw6/McnsaAIJAAACwzejbB9n2IUQAziIAANjiop4ddfPgC9yeBoAgEQAAKq1b+xZ664nbFB0d5fZUAASJAABQKX3P7aRprz6olOQEt6cCwAICAPCJqsmJeuvJ23TZBd08sdimpiTpuQev1cQX7ua2v4AP8TVAwCeio6M0qM9ZGtTnLBWXlGr2kjX6/JtlmrlgZaW+t29VtapJuvayc3Xv9f1Us3rVsI0LwF4EAOBD8XGxurB7B13YvYMkafvuA1q8Yr0WrdygxSs36MeftqmsvNy28ZKTEtS7W2v1691Fl5zfRcmJ8bY9NgB3RAUCAUcHKMjJCmmA5Mxsu6cCGKO4pFRbd+7Tpm27tWXHXm3evkdbd+zT/oN5yi8sUsGR4v/9X2GRysrLFRsTo7jYGFWvmqT0tFTVTa+hpo3qqGVGPXXMbKq2pzZWlWjeMQRCVZAT2v0xkjOzHftkLVcAgAgUHxerUzPq69SM+m5PBYBHkfQAABiIAAAAwEAEAAAABiIAAAAwEAEAAICBCAAAAAxEAAAAYCACAAAAAxEAAAAYiAAAAMBABAAAAAYiAAAAMBABAACAgQgAAAAMRAAAAGAgAgAAAAMRAAAAGIgAAADAQAQAAAAGIgAAADAQAQAAgIEIAAAADEQAAABgIAIAAAADEQAAABiIAAAAwEAEAAAABiIAAAAwEAEAAICBCAAAAAxEAAAAYCACAAAAAxEAAAAYiAAAAMBABAAAAAYiAAAAMBABAACAgQgAAAAMRAAAAGAgAgAAAAMRAAAAGIgAAADAQAQAAAAGIgAAADBQjNsTgHUFhUVanrNFy9ds1pqN27Vjd6527D6gX/MKVFRcoqKSUiUmxCs1OVGpKYlKT6um05o1UOvmDZXZrKE6tWmmhPjY8M75SLGWrd6kZWs2a/X67dq2a7927j6gvIIjKiouUUlpmRLj45QQH6eaNaqqUd2aatIgXe1bNVGn1k3VtuUpio6OCuucgXDw4/mMyBAVCAQcHaAgJyukAZIzs+2eiq/l5Rfqwy++07Rvlmr+snUqKS0L+bES4+PUs2umLjyng/r26qR66TVsnOn/KSou1ZSZizV11mJ9u3i1iopLQ36s9LRUXdSzo4ZcfLbO6dzKxllK075dpr/c/bylfWrVSNXqz59TSnJCyOO27XevtmzfE9S2c98fo46ZGUFty/HYa9W0Z9W0UR1bH9Ot83ngiH8qe96KkMcKh+TEeO1Z+Kbb07BdQU5WSPslZ2Y79sqHKwAet23Xfj3z+qf68IsFKiwqseUxjxSXKHveCmXPW6H7n5qgvr07adiQC9S9kz0La0Fhkf717hd6deIsHfj1sC2PuS83T+9Mna13ps5W6xaNdP8N/TUw60xbHjsU+w/m6d8TvtCoYQNcm4OdIu14vMqP5zMiF58B8KiCI8Ua9dz7Ov2S+/X2lG9t+2NxvLLycn0ya4mybviHxr72SaUfb9KM79Su/7164pUpti3+x1uzYbuGjhyn3teM1ur12xwZIxj/nvCF9h/Mc218u0Xa8XiJX89nRDYCwIOWrNqoMweN0r/f/ULFJaFfNreq8EhxyPvmFxTp+gdf1vUPvqw9+w/ZOKsTW7Jqo3pe9Yj+5/0vwzLe8fILivTU65+6MrYTIu14vMKP5zPMQAB4zH+mzdOF14/R5iDfS/WCfbl5yrrxcU2a8V3Yxy4uKdX9T0/QPU++o4oKZz/P8nve/Ohrbdu1P+zjOiXSjsdtfjyfYQ4CwEOeH/+5bnnoVZWWlbs9laDtP5inC657TCvWbnV1Hq99OEvDHnk17OOWlJbp8Zcnh31cp0Ta8bjJj+czzEIAeMQbH32th16Y6PY0LCksKtHAEc9q48+73Z6KJOn9afP16EuTwj7uxOkLlLNxR9jHdUqkHY8b/Hg+wzx8C8AD5n6fo3ueHB/y/qdm1Ff/8zrrzA6nqkWTeqpds5oS4mOVd7hQuYfydTCvQOs279TiFRu0eNUGrdu805bL5X99eoKWrt5keb+42Bj1691Zfc/tpA6tmqh+nTQlxMfqcP4Rbd6xV4t+WK+Pv1ykxas2WH7sZ974TN3at1TWOR0s7xuqioqARr84SZP+dU/YxnRSpB1PuPn1fIZ5CACX7T+Yp+seHBfSCdylbTM9esdg9eiS+bv/vUa1FNWoliJJ6tymma7q30OStGvfQX385SK9Ofkbbdi6K6R5Z89bobenfGt5v4vP7ahn/nqNGter9V//rXpqsjpmZqhjZoZuu/JCzVmSoxFj3rT8/umtj7ympVOeUs3qVS3PL1RfzFmuRSvW64wOLcM2ppMi7XjCxa/nM8xEALjsb899YPlT89HRUXrk9kG6e2jfkO6OVy+9hm6/qo+GX5mlGXN/0OMvf6xVP/0c9P6lZeV64OkJlscdNWyApe+Z9+yaqQUTH9fgu57X3O9zgt5vX26ennx1qv7512ssz7EyHvrXh5r19kNhHdNJfj2e8WOHu3aPCK+fz5NfvM/y4x815K7n9fnsZUFtGx8XqwNL3g55LIQHnwFw0bI1m/X+5/Mt7VMlOlrjx96ue6/vV+lb40ZFReminh21YOLjenn0TUpPSw1qv7cmf2P5Vfmd114c0k1mqiYnavKL96n9aU0s7ffmR19r6859lserjIU//OT5u6xZEWnH4zS/ns8wFwHgon++8ams3or50TsHa8Cfutk6j6ioKF1zaU+NuLrPSbcNBAIa9x9rt2lu3aKRHrtzcKjTU1JCnMaPHa7YmCpB71NaVq7XPpwV8pihGv3ipIh6PzbSjsdJfjyfYTYCwCVbduzV9DnLLe1zdqfTdMfVFzk0o+B8s2i15Vf/T99/tapEV+7/1Vo0qaebB19gaZ93P5lTqd8fCMXq9dtcuR+CUyLteJzi1/MZZiMAXPLhF99ZemVVJTpar4y+yfVfxJs6a7Gl7Xt2zVTPrr//oSarHrzlMsXHBf+rZ7/mFWjO92tsGduKx1+eXKkfd/GaSDseJ/j1fIbZCACXfPLVEkvbX3xuR2XY/ItkVgUCAc2Y+4OlfYZc3N228aunJuvC7u0t7TNjjrX5nsypGfVP+tOrW3fu01uTv7F1XKdE2vG4xY/nM0AAuGBfbp7lH7G5ZcifHJpN8DZs3WXpE85xsTHq37uzrXO4vI+1T3fPW7rW1vHr1a4R1L/FU69/ooLCIlvHdkKkHY8b/Ho+AwSAC6ze4KZGtRT16OL+T3suz9liafsOrZqoWtUkW+fQs2trS9tv+HmX7QvXfdf3U2rKHx/Xvtw8vfietQ9LuiXSjifc/Ho+A9wHwAUrLd43v0vbZoqKcv+9wjUbtlvavk2LxrbPIa1aiurWqq7d+38NavuKioBWb9yubu1a2DaHGtVSdPfQvie97fC/3pmumwadF9YbEoUi0o5n6MhxGjpyXKUfJ9jvsvv1fAa4AuCCLTv2Wtq+q42LV2X8/Iu179W3adnIkXm0aWktLHbsOmD7HIZflaW6tar/4TaHC47omTc+s31sJ0Ta8YSTX89ngABwgdWfWz01o55DM7Fm5+5cS9s3+p3b/drhlPrWHnfHbvsDICkhTiNvvvSk270+6Sttd2B8u0Xa8YSTX89ngABwQe6v+Za2r1Y12aGZWPPr4QJL26cmJzoyjxSLj3vocKEj8xj6515qepJPcheXlOofL3/syPh2i7TjCRe/ns8AAeCCouISS9tXT/XGHwyrN9VJSU5wZB4pSdYet7DI2vMdrJgqVfTw8IEn3e6Dz+dr3eadjszBTpF2POHi1/MZIABcUFxi7aYqKYnxDs3EmuISawGQlODMvJMtPh9W523Fny88Qx1aNfnDbcorKvToi3/8ATuviLTjCQe/ns8AAeCCuFhrX77IP1Ls0EyssXIXPkkqLHJm3gUWnw+r87YiKipKo0cMOul2075dpiWrNjo2D7tE2vGEg1/PZ4AAcEFiQpyl7Q9ZfO/dKSe7Y9zx8gucuXFMvsXv9ScmOBcAknT+We1O+Bvux3r4Xx86Og+7RNrxOM2v5zNAALigRrUUS9v/mueNPxjVLX54Ka/giCPzyLf4uOH40FUwv3Y4f9lazZy/0vG52CHSjsdJfj2fAW4E5ILG9Wpp4Q8/Bb39+q27HJxN8BrUTZNWBb+9E1+/k6x/7aphnTRH5nGszm2aqf95XfTZ19//4XajX5ykC85u5/kbwfj5eMaPHa6BWdZuGV0Zfj2fAa4AuCCjYbql7Zes9MZ7rY0tfq/f6v3Rg39ca3ckdOp+BMcbffvlJ/3Z41U//azJ2YvCMp/KirTjcYpfz2eAAHBB+1YZlrb//kdv/MFo3cLanf2sLtTByD2Ur137Dga9fXR0lFo3d+aOhMdrmVFfV13S46TbPfbyZJWWlYdhRpUTacfjFL+ezwAB4IJu7Zpb2j73UL7mfp/j0GyC17F1U0vbr1i3VXn59t6EZ+4Sa89D81PqOXY/gt8zatiAk35Ycsv2PRo/5dswzahyIu14nODX8xkgAFxQu2Y1y/ezf2XiLIdmE7yWTeqpds1qQW9fXFKqz75ZauscJmUvtLT9OZ1Os3X8k2lQJy2on3od+9pUFTl0gyI7RdrxOMGv5zNAALjkkvO6WNp++rfLtHWntR/jsVtUVJT69Djd0j4Tpy+wbfxDhws1c/4KS/v06dnRtvGDFczP6+7Zf8jSWxluirTjcYIfz2eAAHDJkIvOUnR08J+cLq+o0K2PvKZAIODgrE7usgu6Wtp+9uI1mrd0rS1jj31tqqXbEVdPTda5XVvbMrYVR39eN1JE2vE4wa/nM8xGALgko1EdXdTD2qvTeUvX6qX3sh2aUXDOO7OtMk7ygzHHe+DpCaqoqNwfuk3bduuVD2Za2ufqS3pYvnmRXYZflaU6tYJ/u8TrIu147ObX8xlmIwBcdN+N/S1/f/qhFybq06/++LvZVgUCAb332Vy9OGHGSbeNiorS8CsutPT4P67fptGVuHf8keISXTdynKVPmsfGVNHNgy8IeczKSkqI04M3X+ba+HaLtONxgh/PZ5iNAHBR5zbNdEXf7pb2KSsv1zUPvKgX3ple6cuHgUBAM+b+oO5/eUjDHn5N+3Lzgtrv+oG9LV8FeO7taXrq9U8szzG/oEiX3/GsludssbTf9QN7K6Nhbcvj2enaAb0sP09eFmnHYze/ns8wF3cCdNnjd/9FXy1cpT37DwW9T3lFhf7+/Aea9s1SPXrHIHXv1MrSmHsPHNKUmYv1+qSv9NOWX6xOWXGxMXrqvis16M7nLO03ZtxkrcjZomf+eo0a1q150u3nLV2rEWPe1Mafd1saJz0tVaOGDbC0jxNiY6rokeEDNXTkOLenYgu/HM/QkeNsnWPblo21cNITQW3rx/MZ5iIAXJaelqq3nhiufsOetPw++eKVG5R1wz/UqllD9e/dWWd0aKmWGfWUnlZN8XExOpx/RAcP5Ss3r0Drt/yixas2asnKDVqzYbvKKyoqNe+LenbU0AHnavyU2Zb2m/btMn05f6UuOb+LLu7ZUadnZqhe7TTFx8WooLBIm7fv1aIV6/VR9kItXrkhpLmNe+RG1axeNaR97fbnC8/Q8+Ona+W6rW5PxRaRdjx28+v5DDMRAB7Qs2umnht5re56YnxI+6/dtENrN+2wd1JBePqBa/TjT9u0bM1mS/uVlJbpoxkL9dEMa9/pD8Z9N/TXRS589e9EoqKi9Ogdg3TpbU+7PRVbRNrxOMGv5zPMw2cAPOLGQedrzF1D3J6GJUkJcfr4pfvUrHFdt6ciSbqiX3c9cvvlbk/jv5x/Vjud09naZV0vi7TjcYIfz2eYhwDwkLuH9tUrj92s2Jgqbk8laLVqpOqr8Q+rQ6smrs7jpkHn65VHb/HUr9Id67E7I2sxiLTjcYIfz2eYhQDwmKv691D2W3/31aet09NSlf3G3zWoz1lhHzs+LlbPPHC1nh811NKNWMKtS9tm6t+7s9vTsE2kHY9T/Hg+wxwEgAd1a9dCiyY9oduv6qO42PB9TCMpMT7kfVOSE/TWk7fpzSduDdsNY7q0baY57z2qWy3el8Ato0cMOunP6/pJpB2PU/x4PsMMnL0elZwYr7H3XakfPn1GQwecq6SEOEfGqRIdrf7nddGMN/6mkTdfWunHG3zR2Vr12bMaNWyAY5/Eb92ikd5+cri+eXe05R9hcVPLjPq6sv85bk/DNpF2PE7y6/mMyMa3ADzulPrpeunhG/WPu6/Qh18s0LRvlmn+srWV+v31hPhYndO5lbLOOV39endW/do1bJyxlJyUoFHDBuie6/rp45mLNHXmYs1essbSffyPl56Wqj49Ttdf+nb39QfQ/nbrnzVpxneVei68JNKOx2l+PJ8RuaKc/jGKgpyskAZIzuQe2SeSX1Ckpas36Ye1W5SzcYe27zqgnXsO6NfDhSoqKlFxaakS4+NUNTlRVVMSlZ6WqtMyGqhVswbKbN5IXdo1d+wVyIkUHCnW0h83admaTVq9fru27dqvX/bk6lB+oYqKS1VaVqaEuFglJsQrrXqKGtWtqSYNaqt9qybq3Kap2rY8xdPv8QOh8uP5DOsKcrJC2i85M9uxP3wEAAAADvNiAPAZAAAADEQAAABgIAIAAAADEQAAABiIAAAAwEAEAAAABiIAAAAwEAEAAICBCAAAAAxEAAAAYCACAAAAAxEAAAAYiAAAAMBABAAAAAYiAAAAMBABAACAgQgAAAAMRAAAAGAgAgAAAAMRAAAAGIgAAADAQAQAAAAGIgAAADAQAQAAgIEIAAAADEQAAABgIAIAAAADEQAAABiIAAAAwEAEAAAABiIAAAAwEAEAAICBCAAAAAxEAAAAYCACAAAAAxEAAAAYiAAAAMBABAAAAAYiAAAAMBABAACAgWLcngD8qyAny+0pAJCUnJnt9hTgQ1wBQEhY/AHv4HxEKAgAWMYfG8B7OC9hFQEAS/gjA3gX5yesIAAAADAQAQAAgIEIAAAADEQAAABgIAIAlvB9Y8C7OD9hBQEAy/gjA3gP5yWsIgAQEv7YAN7B+YhQcCtghIw/OgDgX1wBAADAQAQAAAAGIgAAADAQAQAAgIEIAAAADEQAAABgIAIAAAADEQAAABiIAAAAwEAEAAAABiIAAAAwEAEAAICBCAAAAAxEAAAAYCACAAAAAxEAAAAYiAAAAMBABAAAAAYiAAAAMBABAACAgQgAAAAMRAAAAGAgAgAAAAMRAAAAGIgAAADAQAQAAAAGIgAAADAQAQAAgIEIAAAADEQAAABgIAIAAAADEQAAABiIAAAAwEAEAAAABiIAAAAwEAEAAICBCAAAAAxEAAAAYCACAAAAAxEAAAAYiAAAAMBABAAAAAYiAAAAMBABAACAgQgAAAAMRAAAAGAgAgAAAAMRAAAAGIgAAADAQAQAAAAGIgAAADAQAQAAgIEIAAAADEQAAABgIAIAAAADEQAAABiIAAAAwEAEAAAABiIAAAAwEAEAAICBCAAAAAxEAAAAYCACAAAAAxEAAAAYyLMBUJCT5fYUAACoNK+uZ44HQHJmdpTTYwAAEGmcXj89ewUAAAA4hwAAAMBABAAAAAbydAB49YMTAAAEw8vrWFgCgA8CAgAQvHCsm56+AiB5u54AADgRr69fng8AAABgPwIAAAADhS0AKvN+htcvowAAcKzKrFvh+twcVwAAADBQWAOAqwAAgEjnh1f/ks+uABABAAAv89M65asAAAAA9gh7AFT28oaf6goAYI7Krk/hvmmeL68AEAEAAC/x47rkSgDYUTl+fLIBAJHHjvXIjVvm+/IKwFFEAADATX5eh1wLALtqx89PPgDAv+xaf9z6wTxXrwAQAQAAP/L74i/5/C2AYxEBAIBwiJT1xvUAsLN+IuUfBQDgTXauM26++pekqEAg4Ob4vynIybJ1IsmZ2XY+HADAYHa/wHR78Zc8cAXgKLufDK4GAADsEImLvyTFuD0BJx39R+NqAADAqkh/IemZtwCOsvutgOMRAwCAE3F60ffKq3/JgwEgOR8BEiEAAPg/4Xi176XFX/JoAEjhiYDjEQUAEPncuLTvtcVf8nAASO5EAAAAdvLi4i956FsAv8erTxoAAMHw8jrm6QCQvP3kAQBwIl5fvzz9FsDxeEsAAOB1Xl/4j/L8FYBj+eVJBQCYyU/rlK8CQPLXkwsAMIff1idfvQVwPN4SAAC4zW8L/1G+uwJwLL8+6QCAyODndcjXVwCOxdUAAEC4+HnhPypiAuAoQgAA4JRIWPiPirgAOBYxAACorEha9I8V0QFwFCEAALAqUhf+o4wIgOMRBACA40X6gn88IwPg9xAFAGAO0xb730MAAABgIF/fBwAAAISGAAAAwEAEAAAABiIAAAAwEAEAAICBCAAAAAxEAAAAYCACAAAAAxEAAAAYiAAAAMBABAAAAAYiAAAAMBABAACAgQgAAAAMRAAAAGAgAgAAAAMRAAAAGIgAAADAQAQAAAAGIgAAADAQAQAAgIEIAAAADPT/ANdBJnZNPbzxAAAAAElFTkSuQmCC"><span>ESL CONNECT <span style="font-weight:500;color:#7891ab">/ Quest</span></span></a>
+
+</header>
+<section id="home">
+<div class="hero">
+<span class="eyebrow">English learning · A1 to C2</span>
+<h1>Phrasal Verb Quest</h1>
+<p>Learn the expressions English speakers use every day. Choose your level, answer 10 unique questions and build your vocabulary one phrase at a time.</p>
+<div class="hero-bottom"><div class="hero-chips"><span class="hero-chip">6 levels</span><span class="hero-chip">10 phrasal verbs each</span><span class="hero-chip">60 total</span></div></div>
+</div>
+<div class="section-head"><h2>Choose your level</h2><span class="subtle">Select any level to begin</span></div>
+<div class="levels" id="levelCards"></div>
+</section>
+<section id="quiz" class="hidden" aria-live="polite">
+<div class="quiz-shell">
+<div class="quiz-top"><button class="back" id="backButton">← All levels</button><span class="progress-meta" id="quizMeta"></span></div>
+<div class="quiz-progress" role="progressbar" aria-label="Quiz progress" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0" id="quizProgress"><div id="progressFill" style="width:0%"></div></div>
+<div class="question-card">
+<span class="question-kind" id="questionKind">Vocabulary</span>
+<h2 id="questionTitle"></h2><p class="question-hint" id="questionHint"></p>
+<div class="options" id="options"></div>
+<div class="feedback" id="feedback" role="status"></div>
+<div class="quiz-actions"><button class="action hidden" id="nextButton">Next question →</button></div>
+</div></div>
+</section>
+<section id="results" class="hidden">
+<div class="quiz-shell">
+<div class="result" id="resultCard">
+<div class="well-done-icon" aria-hidden="true">🎉 🏆 🎉</div>
+<span class="question-kind" id="resultLevel"></span>
+<h2 id="resultTitle">Level complete!</h2>
+
+<p id="resultMessage"></p>
+<div class="result-actions"><button class="action secondary" id="repeatButton">↻ Repeat level</button><button class="action" id="nextLevelButton">Next level →</button><button class="action secondary" id="allLevelsButton">All levels</button></div>
+</div>
+<div class="review"><h3>Review the 10 phrasal verbs</h3><div id="reviewList"></div></div>
+</div>
+</section>
+</div>
+<script>
+const BANK={"A1": [{"verb": "get up", "meaning": "leave your bed after sleeping", "example": "I get up at seven every morning."}, {"verb": "wake up", "meaning": "stop sleeping", "example": "I wake up when my alarm rings."}, {"verb": "sit down", "meaning": "move into a sitting position", "example": "Please sit down on this chair."}, {"verb": "stand up", "meaning": "rise to your feet", "example": "Everyone should stand up when the teacher enters."}, {"verb": "come in", "meaning": "enter a room or building", "example": "Please come in and close the door."}, {"verb": "go out", "meaning": "leave your home to do something", "example": "We go out on Saturday evenings."}, {"verb": "turn on", "meaning": "make a light or machine start working", "example": "Please turn on the lamp."}, {"verb": "turn off", "meaning": "make a light or machine stop working", "example": "Remember to turn off the TV."}, {"verb": "put on", "meaning": "dress yourself in an item of clothing", "example": "Put on your coat; it is cold."}, {"verb": "take off", "meaning": "remove an item of clothing", "example": "Take off your shoes at the door."}], "A2": [{"verb": "look for", "meaning": "try to find someone or something", "example": "I am looking for my keys."}, {"verb": "look after", "meaning": "take care of someone or something", "example": "She looks after her little brother."}, {"verb": "pick up", "meaning": "lift something from a surface", "example": "Please pick up the paper from the floor."}, {"verb": "put away", "meaning": "return something to its proper place", "example": "Put away your toys before dinner."}, {"verb": "try on", "meaning": "put on clothing to check whether it fits", "example": "Can I try on these jeans?"}, {"verb": "give back", "meaning": "return something to its owner", "example": "Please give back the book tomorrow."}, {"verb": "find out", "meaning": "discover information", "example": "I need to find out the train time."}, {"verb": "write down", "meaning": "record information in writing", "example": "Write down the address so you remember it."}, {"verb": "throw away", "meaning": "put something in the rubbish because it is no longer wanted", "example": "Do not throw away that old photo."}, {"verb": "come back", "meaning": "return to a place", "example": "Come back before six o'clock."}], "B1": [{"verb": "give up", "meaning": "stop trying to do something", "example": "Do not give up after one difficult lesson."}, {"verb": "carry on", "meaning": "continue doing something", "example": "She carried on working despite the noise."}, {"verb": "run out of", "meaning": "use all of something so that none remains", "example": "We have run out of milk."}, {"verb": "get along with", "meaning": "have a friendly relationship with someone", "example": "I get along with my classmates."}, {"verb": "look forward to", "meaning": "feel happy about something that will happen", "example": "I look forward to the holidays."}, {"verb": "put off", "meaning": "delay something until later", "example": "They put off the meeting until Friday."}, {"verb": "set up", "meaning": "establish or arrange something", "example": "We set up a study group."}, {"verb": "take up", "meaning": "start a new hobby or activity", "example": "He took up swimming last year."}, {"verb": "work out", "meaning": "find a solution by thinking or calculating", "example": "Can you work out the answer?"}, {"verb": "turn down", "meaning": "reject an offer or request", "example": "She turned down the job offer."}], "B2": [{"verb": "bring up", "meaning": "introduce a topic for discussion", "example": "He brought up the budget during the meeting."}, {"verb": "come across", "meaning": "find or meet something by chance", "example": "I came across an old photograph."}, {"verb": "get over", "meaning": "recover from a difficult experience", "example": "It took her months to get over the disappointment."}, {"verb": "put up with", "meaning": "tolerate something unpleasant", "example": "I cannot put up with that noise."}, {"verb": "look into", "meaning": "investigate a situation", "example": "The manager will look into the complaint."}, {"verb": "back up", "meaning": "support a claim with evidence", "example": "You need to back up your argument with facts."}, {"verb": "break down", "meaning": "stop functioning because of a mechanical fault", "example": "Our car broke down on the motorway."}, {"verb": "sort out", "meaning": "resolve a problem or confusion", "example": "Let's sort out the booking problem."}, {"verb": "take over", "meaning": "gain control or responsibility from someone else", "example": "A new director will take over next month."}, {"verb": "point out", "meaning": "draw attention to a fact or detail", "example": "She pointed out an error in the report."}], "C1": [{"verb": "phase out", "meaning": "gradually stop using or providing something", "example": "The company will phase out the old software."}, {"verb": "rule out", "meaning": "decide that something is not possible", "example": "Doctors have ruled out an infection."}, {"verb": "brush up on", "meaning": "improve a skill by reviewing it", "example": "I need to brush up on my French."}, {"verb": "come up against", "meaning": "face a difficulty or opposition", "example": "The proposal came up against strong resistance."}, {"verb": "follow through on", "meaning": "complete something you promised or planned", "example": "They failed to follow through on their commitments."}, {"verb": "zero in on", "meaning": "focus attention very precisely on something", "example": "The investigation zeroed in on one transaction."}, {"verb": "play down", "meaning": "make something seem less important or serious", "example": "The spokesperson played down the risks."}, {"verb": "single out", "meaning": "choose one person or thing for special attention", "example": "The coach singled out her performance for praise."}, {"verb": "iron out", "meaning": "resolve small difficulties or disagreements", "example": "We need to iron out the remaining details."}, {"verb": "fall back on", "meaning": "use something as an alternative when needed", "example": "She can fall back on her savings."}], "C2": [{"verb": "bear out", "meaning": "confirm that a statement or theory is true", "example": "The findings bear out the original hypothesis."}, {"verb": "flesh out", "meaning": "add detail to an idea or plan", "example": "The author needs to flesh out the final chapter."}, {"verb": "eke out", "meaning": "obtain or achieve something with great difficulty", "example": "They eked out a narrow victory."}, {"verb": "ferret out", "meaning": "discover information through persistent searching", "example": "The journalist ferreted out the hidden documents."}, {"verb": "gloss over", "meaning": "avoid discussing an unpleasant detail", "example": "The report glossed over several major failures."}, {"verb": "hedge against", "meaning": "protect yourself against a possible risk", "example": "The firm hedged against currency fluctuations."}, {"verb": "mull over", "meaning": "think carefully about something over time", "example": "She mulled over the offer for several days."}, {"verb": "peter out", "meaning": "gradually become weaker and eventually stop", "example": "The applause slowly petered out."}, {"verb": "sift through", "meaning": "examine a large amount of information carefully", "example": "Analysts sifted through thousands of records."}, {"verb": "weigh up", "meaning": "carefully compare different considerations before deciding", "example": "We must weigh up the benefits and drawbacks."}]};
+const LEVELS=Object.keys(BANK);
+const LEVEL_TITLES={A1:"First Steps",A2:"Everyday English",B1:"Getting Confident",B2:"Natural Conversation",C1:"Advanced Expression",C2:"Mastery & Nuance"};
+const $=id=>document.getElementById(id);
+// Always start fresh when this page is opened or reloaded.
+const storeKey="eslconnect.phrasalquest.v1";
+try { localStorage.removeItem(storeKey); } catch (e) {}
+const state={completed:{},attempts:{}};
+let currentLevel=null,questions=[],index=0,answered=false,allCorrect=true;
+function save(){ /* Progress is intentionally session-only and resets on reload. */ }
+function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
+function esc(s){return String(s).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;")}
+function show(id){["home","quiz","results"].forEach(x=>$(x).classList.toggle("hidden",x!==id));window.scrollTo({top:0,behavior:"instant"})}
+function renderLevels(){
+$("levelCards").innerHTML=LEVELS.map((level,i)=>{
+const done=Boolean(state.completed[level]);
+return `<button class="level-card" data-level="${level}" aria-label="Start ${level} phrasal verb quiz">
+<div class="level-top"><span class="level-badge">${level}</span><span style="font-size:13px;font-weight:900;color:${done?'#157a57':'#6e8aaa'}">${done?'✓ Completed':'10 questions'}</span></div>
+<h3>${LEVEL_TITLES[level]}</h3><p>${["Simple actions and everyday routines.","Common expressions for daily life.","Useful phrases for work and conversation.","More flexible and idiomatic language.","Precise phrases for advanced discussion.","Subtle expressions and sophisticated meanings."][i]}</p>
+<div class="level-foot"><span>${done?'Play again':'Start learning'}</span><span>→</span></div>
+<div class="progress-track"><div class="progress-fill" style="width:${done?'100':'0'}%"></div></div>
+</button>`}).join("");
+$("levelCards").querySelectorAll("[data-level]").forEach(btn=>btn.addEventListener("click",()=>startQuiz(btn.dataset.level)));
+}
+function buildQuestions(level,attempt){
+const items=BANK[level];
+return shuffle(items.map((item,i)=>{
+  // Two complementary question forms; a replay changes the prompt type.
+  const mode=(i+attempt)%2;
+  const distractors=shuffle(items.filter(x=>x.verb!==item.verb)).slice(0,3);
+  return {item,mode,correct:mode===0?item.meaning:item.verb,
+    options:shuffle([mode===0?item.meaning:item.verb,...distractors.map(x=>mode===0?x.meaning:x.verb)]),
+    title:mode===0?`What does “${item.verb}” mean?`:`Which phrasal verb means “${item.meaning}”?`,
+    kind:mode===0?"Choose the meaning":"Choose the phrasal verb"
+  };
+}));
+}
+function startQuiz(level){
+if(!BANK[level])return;
+currentLevel=level;index=0;answered=false;allCorrect=true;
+const attempt=state.attempts[level]||0;state.attempts[level]=attempt+1;save();
+questions=buildQuestions(level,attempt);
+show("quiz");renderQuestion();
+}
+function renderQuestion(){
+answered=false;
+const q=questions[index];
+$("quizMeta").textContent=`${currentLevel} · Question ${index+1} of 10`;
+$("quizProgress").setAttribute("aria-valuenow",String(index));
+$("progressFill").style.width=`${index*10}%`;
+$("questionKind").textContent=q.kind;
+$("questionTitle").textContent=q.title;
+$("questionHint").textContent="Select the one correct answer.";
+$("options").innerHTML="";
+q.options.forEach((opt,i)=>{
+const btn=document.createElement("button");
+btn.className="option";btn.type="button";
+btn.innerHTML=`<span class="option-letter">${"ABCD"[i]}</span><span>${esc(opt)}</span>`;
+btn.addEventListener("click",()=>chooseAnswer(opt,btn));
+$("options").appendChild(btn);
+});
+$("feedback").className="feedback";$("feedback").innerHTML="";
+$("nextButton").classList.add("hidden");
+}
+function chooseAnswer(value,clicked){
+if(answered)return;
+answered=true;
+const q=questions[index],correct=value===q.correct;
+if(!correct)allCorrect=false;
+$("options").querySelectorAll("button").forEach(btn=>{
+btn.disabled=true;
+const value=btn.lastElementChild.textContent;
+if(value===q.correct)btn.classList.add("correct");
+else if(btn===clicked)btn.classList.add("wrong");
+});
+$("feedback").className=`feedback show ${correct?"good":"bad"}`;
+$("feedback").innerHTML=`<strong>${correct?"Correct!":"Not quite — here's the answer."}</strong>
+<div><b>${esc(q.item.verb)}</b> means ${esc(q.item.meaning)}.</div><div class="example">“${esc(q.item.example)}”</div>`;
+$("nextButton").textContent=index===9?"See results →":"Next question →";
+$("nextButton").classList.remove("hidden");
+}
+function finishQuiz(){
+state.completed[currentLevel]=true;save();
+show("results");
+$("resultLevel").textContent=currentLevel+" · "+LEVEL_TITLES[currentLevel];
+$("resultCard").classList.toggle("perfect",allCorrect);
+$("resultTitle").textContent=allCorrect?"Well done!":"Level complete!";
+$("resultMessage").textContent=allCorrect?"Amazing work! You answered all 10 questions correctly — 100% correct! You have mastered this level. Ready for the next challenge?":"You have reviewed all 10 phrasal verbs. Repeat this level for more practice, or move on to the next one.";
+$("nextLevelButton").classList.toggle("hidden",LEVELS.indexOf(currentLevel)===LEVELS.length-1);
+$("reviewList").innerHTML=BANK[currentLevel].map(item=>`<details><summary>${esc(item.verb)}</summary><p><b>Meaning:</b> ${esc(item.meaning)}</p><p><b>Example:</b> ${esc(item.example)}</p></details>`).join("");
+renderLevels();
+}
+$("nextButton").addEventListener("click",()=>{if(!answered)return;if(index===9)finishQuiz();else{index++;renderQuestion()}});
+$("backButton").addEventListener("click",()=>{show("home");renderLevels()});
+$("repeatButton").addEventListener("click",()=>startQuiz(currentLevel));
+$("nextLevelButton").addEventListener("click",()=>{const next=LEVELS[LEVELS.indexOf(currentLevel)+1];if(next)startQuiz(next)});
+$("allLevelsButton").addEventListener("click",()=>{renderLevels();show("home")});
+renderLevels();
+show("home");
+</script>
+</body>
+</html>
